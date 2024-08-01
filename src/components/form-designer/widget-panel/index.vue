@@ -4,10 +4,10 @@
       <el-tabs v-model="firstTab" class="no-bottom-margin indent-left-margin">
         <el-tab-pane name="componentLib">
           <template #label>
-            <span
-              ><svg-icon icon-class="el-set-up" />
-              {{ i18nt("designer.componentLib") }}</span
-            >
+            <span>
+              <svg-icon icon-class="el-set-up" />
+              {{ i18nt("designer.componentLib") }}
+            </span>
           </template>
 
           <el-collapse v-model="activeNames" class="widget-collapse">
@@ -51,6 +51,7 @@
             <el-collapse-item
               name="2"
               :title="i18nt('designer.basicFieldTitle')"
+              v-if="basicFields.length > 0"
             >
               <draggable
                 tag="ul"
@@ -73,16 +74,13 @@
                         :icon-class="fld.icon"
                         class-name="color-svg-icon"
                       />
-                      <!-- TODO:--- 文字展示 暂时修改成type -->
                       {{
                         i18n2t(
                           `designer.widgetLabel.${fld.type}`,
                           `extension.widgetLabel.${fld.type}`
                         )
                       }}
-                      --- {{ fld.type }}
-                      </span
-                    >
+                      </span>
                   </li>
                 </template>
               </draggable>
@@ -91,6 +89,7 @@
             <el-collapse-item
               name="3"
               :title="i18nt('designer.advancedFieldTitle')"
+              v-if="advancedFields.length > 0"
             >
               <draggable
                 tag="ul"
@@ -127,6 +126,7 @@
             <el-collapse-item
               name="4"
               :title="i18nt('designer.customFieldTitle')"
+              v-if="customFields.length > 0"
             >
               <draggable
                 tag="ul"
@@ -168,10 +168,10 @@
           style="padding: 8px"
         >
           <template #label>
-            <span
-              ><svg-icon icon-class="el-form-template" />
-              {{ i18nt("designer.formLib") }}</span
-            >
+            <span>
+              <svg-icon icon-class="el-form-template" />
+              {{ i18nt("designer.formLib") }}
+              </span>
           </template>
 
           <template v-for="(ft, idx) in formTemplates">
@@ -180,7 +180,7 @@
               shadow="hover"
               class="ft-card"
             >
-              <el-popover placement="right" trigger="hover">
+              <el-popover placement="right" trigger="hover" width="auto">
                 <template #reference>
                   <img :src="ft.imgUrl" style="width: 200px" />
                 </template>
@@ -192,7 +192,7 @@
                   link
                   type="primary"
                   class="right-button"
-                  @click="loadFormTemplate(ft.jsonUrl)"
+                  @click="loadFormTemplate(ft.jsonStr)"
                 >
                   {{ i18nt("designer.hint.loadFormTemplate") }}</el-button
                 >
@@ -212,21 +212,9 @@ import {
   advancedFields as AFS,
   customFields as CFS,
 } from "./widgetsConfig";
-import { formTemplates } from "./templatesConfig";
 import { addWindowResizeHandler, generateId } from "@/utils/util";
 import i18n from "@/utils/i18n";
-import axios from "axios";
 import SvgIcon from "@/components/svg-icon/index";
-
-// import ftImg1 from '@/assets/ft-images/t1.png'
-// import ftImg2 from '@/assets/ft-images/t2.png'
-// import ftImg3 from '@/assets/ft-images/t3.png'
-// import ftImg4 from '@/assets/ft-images/t4.png'
-// import ftImg5 from '@/assets/ft-images/t5.png'
-// import ftImg6 from '@/assets/ft-images/t6.png'
-// import ftImg7 from '@/assets/ft-images/t7.png'
-// import ftImg8 from '@/assets/ft-images/t8.png'
-
 export default {
   name: "FieldPanel",
   mixins: [i18n],
@@ -236,7 +224,7 @@ export default {
   props: {
     designer: Object,
   },
-  inject: ["getBannedWidgets", "getDesignerConfig"],
+  inject: ["getBannedWidgets", "getDesignerConfig", "getFormTemplates"],
   data() {
     return {
       designerConfig: this.getDesignerConfig(),
@@ -251,18 +239,7 @@ export default {
       basicFields: [],
       advancedFields: [],
       customFields: [],
-
-      formTemplates: formTemplates,
-      // ftImages: [
-      //   {imgUrl: ftImg1},
-      //   {imgUrl: ftImg2},
-      //   {imgUrl: ftImg3},
-      //   {imgUrl: ftImg4},
-      //   {imgUrl: ftImg5},
-      //   {imgUrl: ftImg6},
-      //   {imgUrl: ftImg7},
-      //   {imgUrl: ftImg8},
-      // ]
+      formTemplates: this.getFormTemplates(),
     };
   },
   computed: {
@@ -378,7 +355,7 @@ export default {
       this.designer.addFieldByDbClick(widget);
     },
 
-    loadFormTemplate(jsonUrl) {
+    loadFormTemplate(json) {
       this.$confirm(
         this.i18nt("designer.hint.loadFormTemplateHint"),
         this.i18nt("render.hint.prompt"),
@@ -388,32 +365,22 @@ export default {
         }
       )
         .then(() => {
-          axios
-            .get(jsonUrl)
-            .then((res) => {
-              let modifiedFlag = false;
-              if (typeof res.data === "string") {
-                modifiedFlag = this.designer.loadFormJson(JSON.parse(res.data));
-              } else if (res.data.constructor === Object) {
-                modifiedFlag = this.designer.loadFormJson(res.data);
-              }
-              if (modifiedFlag) {
-                this.designer.emitHistoryChange();
-              }
+          let modifiedFlag = false;
+          if (typeof json === "string") {
+            modifiedFlag = this.designer.loadFormJson(JSON.parse(json));
+          } else if (json.constructor === Object) {
+            modifiedFlag = this.designer.loadFormJson(json);
+          }
 
-              this.$message.success(
-                this.i18nt("designer.hint.loadFormTemplateSuccess")
-              );
-            })
-            .catch((error) => {
-              this.$message.error(
-                this.i18nt("designer.hint.loadFormTemplateFailed") + ":" + error
-              );
-            });
+          if (modifiedFlag) {
+            this.designer.emitHistoryChange();
+          }
+
+          this.$message.success(
+            this.i18nt("designer.hint.loadFormTemplateSuccess")
+          );
         })
-        .catch((error) => {
-          console.error(error);
-        });
+        .catch(() => {});
     },
   },
 };

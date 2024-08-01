@@ -1,30 +1,39 @@
-# Variant Form 3 For Vue 3.x
-#### 一款高效的Vue 3低代码表单，可视化设计，一键生成源码，享受更多摸鱼时间。
+# 基于 VForm 3 修改的表单设计器
+
+## Variant Form 3 For Vue 3.x
+
+#### 一款高效的Vue 3低代码表单，可视化设计，一键生成源码，享受更多摸鱼时间
 
 ![image](https://ks3-cn-beijing.ksyuncs.com/vform-static/img/vform_demo.gif)
 
 <br/>
 
 ### 立即体验VForm 3
+
 [在线Demo](http://120.92.142.115:81/vform3/)
 
 ### 🎉🎉<mark>基于VForm3的全栈低代码平台已发布</mark>🎉🎉
+
 [美乐低代码——立即进入](https://melecode.com/) （私有部署、开箱即用️，已开源✌✌）️
 
 ### 立即体验VForm 3 Pro高级版（提供商业支持）
+
 [VForm 3 Pro Demo](https://www.vform666.com/pro/)
 
-### 视频教程集合：
+### 视频教程集合
+
 [B站观看](https://space.bilibili.com/626932375)
- 
+
 ### 适合Vue 2的版本看这里
+
 [点此查看](https://gitee.com/vdpadmin/variant-form)
- 
+
 ### 友情链接
 
 [Fantastic-admin](https://hooray.gitee.io/fantastic-admin/) —— 一款开箱即用的 Vue 中后台管理系统框架（支持Vue2/Vue3）
 
 ### 功能一览
+
 ```
 > 拖拽式可视化表单设计；
 > 支持PC、Pad、H5三种布局；
@@ -42,31 +51,37 @@
 ```
 
 ### 安装依赖
+
 ```
 npm install --registry=https://registry.npm.taobao.org
 ```
 
 ### 开发调试
+
 ```
 npm run serve
 ```
 
 ### 生产打包
+
 ```
 npm run build
 ```
 
 ### 表单设计器 + 表单渲染器打包
+
 ```
 npm run lib
 ```
 
 ### 表单渲染器打包
+
 ```
 npm run lib-render
 ```
 
 ### 浏览器兼容性
+
 ```Chrome（及同内核的浏览器如QQ浏览器、360浏览器等等），Firefox，Safari```
 
 <br/>
@@ -76,10 +91,13 @@ npm run lib-render
 <br/>
 
 #### 1. 安装包
+
 ```bash
 npm i vform3-builds
 ```
+
 或
+
 ```bash
 yarn add vform3-builds
 ```
@@ -87,6 +105,7 @@ yarn add vform3-builds
 <br/>
 
 #### 2. 引入并全局注册VForm 3组件
+
 ```
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -107,6 +126,7 @@ app.mount('#app')
 <br/>
 
 #### 3. 在Vue 3.x模板中使用表单设计器组件
+
 ```bash
 <template>
 <v-form-designer ref="vfdRef"></v-form-designer>
@@ -126,6 +146,7 @@ margin: 0;  /* 如果页面出现垂直滚动条，则加入此行CSS以消除�
 <br/>
 
 #### 4. 在Vue 3.x模板中使用表单渲染器组件
+
 ```html
 <template>
 <div>
@@ -158,6 +179,7 @@ const submitForm = () => {
 <br/>
 
 ### 资源链接
+
 <hr>
 
 文档官网：<a href="https://www.vform666.com/" target="_blank">https://www.vform666.com/</a>

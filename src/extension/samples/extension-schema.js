@@ -20,7 +20,7 @@ export const alertSchema = {
   icon: 'alert',
   formItemFlag: false,
   options: {
-    name: '',
+    // name: '',
     title: 'Good things are coming...',
     type: 'info',
     description: '',

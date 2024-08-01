@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import VFormRender from '@/components/form-render/index.vue'
 import ContainerItems from '@/components/form-render/container-item/index'
 
@@ -33,11 +31,10 @@ const install = (app) => {
     app.component(component.name, component)
   })
 
-  window.axios = axios
 }
 
 if (typeof window !== 'undefined' && window.Vue) { /* script方式引入时赋值axios！！ */
-  //window.axios = axios
+
 }
 
 export default {

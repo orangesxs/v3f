@@ -1,3 +1,4 @@
+// 注册字段组件的代码生成器
 import {
   buildClassAttr,
   buildContainerWidget,

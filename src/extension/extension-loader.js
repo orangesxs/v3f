@@ -3,6 +3,7 @@
 import {
   addContainerWidgetSchema,
   addCustomWidgetSchema,
+  addBasicFieldSchema
 } from "@/components/form-designer/widget-panel/widgetsConfig";
 import * as PERegister from "@/components/form-designer/setting-panel/propertyRegister";
 import * as PEFactory from "@/components/form-designer/setting-panel/property-editor-factory.jsx";
@@ -80,10 +81,13 @@ export const loadExtension = function (app) {
    * 4. 注册字段组件的代码生成器；
    * 5. 加载完毕。
    */
-  addCustomWidgetSchema(alertSchema); //加载组件Json Schema
+  // addCustomWidgetSchema(alertSchema); //加载组件Json Schema
+  addBasicFieldSchema(alertSchema); //加载组件Json Schema
   /* -------------------------------------------------- */
   app.component(AlertWidget.name, AlertWidget); //注册组件
   /* -------------------------------------------------- */
+  //   /* -------------------------------------------------- */
+  // 注册组件属性
   PERegister.registerCPEditor(
     app,
     "alert-title",
@@ -168,8 +172,8 @@ export const loadExtension = function (app) {
     PEFactory.createEventHandlerEditor("onClose", [])
   );
   /* -------------------------------------------------- */
+  // 可无
   registerFWGenerator("alert", alertTemplateGenerator); //注册字段组件的代码生成器
   /* -------------------------------------------------- */
   /* 字段组件加载完毕 end */
-
 };

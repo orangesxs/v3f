@@ -34,10 +34,11 @@
       selectedWidget: Object,
       optionModel: Object,
     },
-    inject: ['serverFieldList', 'getDesignerConfig'],
+    inject: ['getFieldList', 'getDesignerConfig'],
     data() {
       return {
         nameRequiredRule: [{required: true, message: 'name required'}],
+        serverFieldList: this.getFieldList()
       }
     },
     computed: {

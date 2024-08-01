@@ -75,7 +75,6 @@
     getAllFieldWidgets, traverseAllWidgets} from "@/utils/util"
   import {MOCK_CASE_URL, VARIANT_FORM_VERSION} from "@/utils/config"
   import i18n, { changeLocale } from "@/utils/i18n"
-  import axios from 'axios'
   import SvgIcon from "@/components/svg-icon/index"
 
   export default {
@@ -90,6 +89,11 @@
       VFormWidget,
     },
     props: {
+      /* 语言 默认中文 已监听 可选值 zh-CN | en-US */
+      locale: {
+        type: String,
+        default: 'zh-CN'
+      },
       /* 后端字段列表 [ { label: '', name: '' } ] */
       fieldList: {
         type: Array,
@@ -98,6 +102,19 @@
 
       /* 禁止显示的组件名称数组 */
       bannedWidgets: {
+        type: Array,
+        default: () => [
+          // 默认禁止显示组件
+          'table', 'static-text', 'html-text', 'card',
+          // ----------- 上传相关组件
+          'file-upload', 'picture-upload'
+        ]
+      },
+      /** 
+       * 模版列表
+       * { title: '', imgUrl: '', description: '', jsonStr: '' }
+       */
+      formTemplates: {
         type: Array,
         default: () => []
       },
@@ -112,8 +129,8 @@
             showMultimedia: false,  //是否显示多媒体组件
             showStructureTree: false,  //是否显示表单结构树
             showAdvanceAndRetreat: true,  //是否显示前进、后退按钮
-            formTemplates: true,  //是否显示表单模板
-            eventCollapse: true,  //是否显示组件事件属性折叠面板
+            formTemplates: true,  // 是否显示表单模板
+            eventCollapse: false,  // 是否显示组件事件属性折叠面板
             widgetNameReadonly: false,  //禁止修改组件名称
 
             clearDesignerButton: true,  //是否显示清空设计器按钮
@@ -128,7 +145,7 @@
 
             presetCssCode: '',  //设计器预设CSS样式代码
 
-            resetFormJson: true,  //是否在设计器初始化时将表单内容重置为空 如设置为true，则刷新页面时也会清空设计器画布区域，慎用！
+            resetFormJson: false,  //是否在设计器初始化时将表单内容重置为空 如设置为true，则刷新页面时也会清空设计器画布区域，慎用！
           }
         }
       },
@@ -137,6 +154,24 @@
       globalDsv: {
         type: Object,
         default: () => ({})
+      },
+      /** 数据字典 数据 */
+      dictionary: {
+        type: Array,
+        default: () => [
+          // // 示例值 格式
+          // {
+          //   id: 'customerType',
+          //   label: '客户类型',
+          //   options: [
+          // 选项数据  赋值给optionItems的格式
+          //     {
+          //       label: 'vip客户',
+          //       value: '1'
+          //     }
+          //   ]
+          // }
+        ]
       },
 
     },
@@ -147,7 +182,6 @@
         curLocale: '',
 
         vsCodeFlag: false,
-        caseName: '',
 
         docUrl: 'https://www.vform666.com/document3.html',
         gitUrl: 'https://github.com/vform666/variant-form3-vite',
@@ -162,28 +196,39 @@
     },
     provide() {
       return {
-        serverFieldList: this.fieldList,
+        getDictionary: () => this.dictionary,
+        getGlobalDsv: () => this.globalDsv, // 全局数据源变量
+        getFieldList: () => this.fieldList,
         getDesignerConfig: () => this.designerConfig,
         getBannedWidgets: () => this.bannedWidgets,
+        getFormTemplates: () => this.formTemplates,
+        getSendEmit: () => this.sendEmit,
       }
     },
     created() {
       this.vsCodeFlag = getQueryParam('vscode') == 1
-      this.caseName = getQueryParam('case')
+    },
+    watch: {
+      locale: {
+        immediate: true, // 添加立即执行标志
+        handler(newValue) {
+          this.handleLanguageChanged(newValue)
+        }
+      },
     },
     mounted() {
-      this.initLocale()
-
       this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
       addWindowResizeHandler(() => {
         this.$nextTick(() => {
           this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
         })
       })
-
-      this.loadCase()
     },
     methods: {
+      // 发送事件
+      sendEmit(eventName, ...args){
+        this.$emit(eventName, args)
+      },
       testEEH(eventName, eventParams) {
         console.log('test', eventName)
         console.log('test222222', eventParams)
@@ -225,49 +270,32 @@
         }
       },
 
-      loadCase() {
-        if (!this.caseName) {
-          return
-        }
-
-        axios.get(MOCK_CASE_URL + this.caseName + '.txt').then(res => {
-          if (!!res.data.code) {
-            this.$message.error(this.i18nt('designer.hint.sampleLoadedFail'))
-            return
-          }
-
-          this.setFormJson(res.data)
-          this.$message.success(this.i18nt('designer.hint.sampleLoadedSuccess'))
-        }).catch(error => {
-          this.$message.error(this.i18nt('designer.hint.sampleLoadedFail') + ':' + error)
-        })
-      },
-
-      initLocale() {
-        this.curLocale = localStorage.getItem('v_form_locale')
-        if (!!this.vsCodeFlag) {
-          this.curLocale = this.curLocale || 'en-US'
-        } else {
-          this.curLocale = this.curLocale || 'zh-CN'
-        }
-        this.curLangName = this.i18nt('application.' + this.curLocale)
-        this.changeLanguage(this.curLocale)
-      },
+      // initLocale() {
+      //   this.curLocale = localStorage.getItem('v_form_locale')
+      //   if (!!this.vsCodeFlag) {
+      //     this.curLocale = this.curLocale || 'en-US'
+      //   } else {
+      //     this.curLocale = this.curLocale || 'zh-CN'
+      //   }
+      //   this.curLangName = this.i18nt('application.' + this.curLocale)
+      //   this.changeLanguage(this.curLocale)
+      // },
       /** 切换语言 */
       handleLanguageChanged(command) {
         this.changeLanguage(command)
         this.curLangName = this.i18nt('application.' + command)
       },
-
+      /** 切换语言 */
       changeLanguage(langName) {
         changeLocale(langName)
       },
 
+      /** 设置表单json */
       setFormJson(formJson) {
         let modifiedFlag = false
         if (!!formJson) {
           if (typeof formJson === 'string') {
-            modifiedFlag = this.designer.loadFormJson( JSON.parse(formJson) )
+            modifiedFlag = this.designer.loadFormJson(JSON.parse(formJson) )
           } else if (formJson.constructor === Object) {
             modifiedFlag = this.designer.loadFormJson(formJson)
           }
@@ -277,7 +305,9 @@
           }
         }
       },
-
+      /**
+       * 获取表单json
+       */
       getFormJson() {
         return {
           widgetList: deepClone(this.designer.widgetList),

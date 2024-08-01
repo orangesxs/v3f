@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import axios from 'axios'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
 import zhCN from "element-plus/dist/locale/zh-cn.mjs" //引入中文
@@ -18,7 +17,6 @@ import { installI18n } from '@/utils/i18n'
 import { loadExtension } from '@/extension/extension-loader'
 
 if (typeof window !== 'undefined') {
-  window.axios = axios
 }
 
 const vfApp = createApp(App)

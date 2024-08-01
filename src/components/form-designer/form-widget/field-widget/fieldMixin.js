@@ -3,7 +3,15 @@ import FormValidators from '@/utils/validators'
 import eventBus from "@/utils/event-bus"
 
 export default {
-  inject: ['refList', 'getFormConfig', 'getGlobalDsv', 'globalOptionData', 'globalModel', 'getOptionData'],
+  inject: [
+    'refList',
+    'getFormConfig', 
+    'getGlobalDsv', 
+    'globalOptionData', 
+    'globalModel', 
+    'getOptionData',
+    'getDictionary'
+  ],
 
   computed: {
     formConfig() {
@@ -173,11 +181,31 @@ export default {
           || (this.field.type === 'select') || (this.field.type === 'cascader')) {
         /* 异步更新option-data之后globalOptionData不能获取到最新值，改用provide的getOptionData()方法 */
         const newOptionItems = this.getOptionData()
+        // 选项
+        let options = []
         if (!!newOptionItems && newOptionItems.hasOwnProperty(this.field.options.name)) {
+          options = deepClone(newOptionItems[this.field.options.name])
+        }
+
+        // 设置字典的下拉选项
+        // 获取字典
+        const dictionary = this.getDictionary()
+        // 选项类型 options 类型 1 手填 2 数据字典
+        const oType = this.field.options.oType
+        // 数据字典
+        if (oType === '2') {
+          const dictionaryId = this.field.options.dictionaryId
+          const fingDictionary = dictionary.find(i=> i.id === dictionaryId)
+          if(fingDictionary){
+            options = deepClone(fingDictionary.options)
+          }
+        }
+
+        if(options.length > 0) {
           if (!!keepSelected) {
-            this.reloadOptions(newOptionItems[this.field.options.name])
+            this.reloadOptions(options)
           } else {
-            this.loadOptions(newOptionItems[this.field.options.name])
+            this.loadOptions(options)
           }
         }
       }

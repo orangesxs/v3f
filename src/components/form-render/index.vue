@@ -77,9 +77,27 @@
         type: Object,
         default: () => ({})
       },
+          /** 数据字典 数据 */
+      dictionary: {
+        type: Array,
+        default: () => [
+          // // 示例值 格式
+          // {
+          //   id: 'customerType',
+          //   label: '客户类型',
+          //   options: [
+          //     {
+          //       label: 'vip客户',
+          //       value: '1'
+          //     }
+          //   ]
+          // }
+        ]
+      },
     },
     provide() {
       return {
+        getDictionary: () => this.dictionary,
         refList: this.widgetRefList,
         sfRefList: this.subFormRefList,  //收集SubForm引用
         getFormConfig: () => this.formJsonObj.formConfig,  /* 解决provide传递formConfig属性的响应式更新问题！！ */

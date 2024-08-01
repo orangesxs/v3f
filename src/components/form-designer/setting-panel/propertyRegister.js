@@ -178,9 +178,9 @@ export function propertyRegistered(uniquePropName) {
 /**
  * 注册常见属性对应的属性编辑器
  * @param app
- * @param uniquePropName
- * @param propEditorName
- * @param editorComponent
+ * @param uniquePropName 属性名称
+ * @param propEditorName 组件名称
+ * @param editorComponent 组件
  */
 export function registerCPEditor(app, uniquePropName, propEditorName, editorComponent) {
   app.component(propEditorName, editorComponent)

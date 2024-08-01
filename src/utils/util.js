@@ -335,6 +335,7 @@ export function copyToClipboard(content, clickEvent, $message, successMsg, error
   clipboard.onClick(clickEvent)
 }
 
+/** 获取 url 指定参数的值 没有则返回 undefind */
 export function getQueryParam(variable) {
   let query = window.location.search.substring(1);
   let vars = query.split("&")

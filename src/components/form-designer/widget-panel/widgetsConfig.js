@@ -40,64 +40,64 @@ export const containers = [
     },
   },
   
-  // {
-  //   type: "tab",
-  //   category: "container",
-  //   icon: "tab",
-  //   displayType: "border-card",
-  //   tabs: [],
-  //   options: {
-  //     name: "",
-  //     hidden: false,
-  //     customClass: "", //自定义css类名
-  //   },
-  // },
+  {
+    type: "tab",
+    category: "container",
+    icon: "tab",
+    displayType: "border-card",
+    tabs: [],
+    options: {
+      name: "",
+      hidden: false,
+      customClass: "", //自定义css类名
+    },
+  },
 
-  // {
-  //   type: "table",
-  //   category: "container",
-  //   icon: "table",
-  //   rows: [],
-  //   options: {
-  //     name: "",
-  //     hidden: false,
-  //     customClass: "", //自定义css类名
-  //   },
-  // },
+  {
+    type: "table",
+    category: "container",
+    icon: "table",
+    rows: [],
+    options: {
+      name: "",
+      hidden: false,
+      customClass: "", //自定义css类名
+    },
+  },
 
-  // {
-  //   type: "table-cell",
-  //   category: "container",
-  //   icon: "table-cell",
-  //   internal: true,
-  //   widgetList: [],
-  //   merged: false,
-  //   options: {
-  //     name: "",
-  //     cellWidth: "",
-  //     cellHeight: "",
-  //     colspan: 1,
-  //     rowspan: 1,
-  //     wordBreak: false, //是否自动换行
-  //     customClass: "", //自定义css类名
-  //   },
-  // },
+  {
+    type: "table-cell",
+    category: "container",
+    icon: "table-cell",
+    internal: true,
+    widgetList: [],
+    merged: false,
+    options: {
+      name: "",
+      cellWidth: "",
+      cellHeight: "",
+      colspan: 1,
+      rowspan: 1,
+      wordBreak: false, //是否自动换行
+      customClass: "", //自定义css类名
+    },
+  },
 
-  // {
-  //   type: "tab-pane",
-  //   category: "container",
-  //   icon: "tab-pane",
-  //   internal: true,
-  //   widgetList: [],
-  //   options: {
-  //     name: "",
-  //     label: "",
-  //     hidden: false,
-  //     active: false,
-  //     disabled: false,
-  //     customClass: "", //自定义css类名
-  //   },
-  // },
+  {
+    type: "tab-pane",
+    category: "container",
+    icon: "tab-pane",
+    internal: true,
+    widgetList: [],
+    options: {
+      name: "",
+      label: "",
+      hidden: false,
+      active: false,
+      disabled: false,
+      customClass: "", //自定义css类名
+    },
+  },
 ];
 
 export const basicFields = [
@@ -249,6 +249,10 @@ export const basicFields = [
       labelHidden: false,
       disabled: false,
       hidden: false,
+      // 类型 1 选项 2 数据字典
+      oType: '1',
+      // 字典id
+      dictionaryId: '',
       optionItems: [
         { label: "radio 1", value: 1 },
         { label: "radio 2", value: 2 },
@@ -289,6 +293,10 @@ export const basicFields = [
       labelHidden: false,
       disabled: false,
       hidden: false,
+      // 类型 1 选项 2 数据字典
+      oType: '1',
+      // 字典id
+      dictionaryId: '',
       optionItems: [
         { label: "check 1", value: 1 },
         { label: "check 2", value: 2 },
@@ -334,6 +342,10 @@ export const basicFields = [
       automaticDropdown: false, //自动下拉
       multiple: false,
       multipleLimit: 0,
+      // 类型 1 选项 2 数据字典
+      oType: '1',
+      // 字典id
+      dictionaryId: '',
       optionItems: [
         { label: "select 1", value: 1 },
         { label: "select 2", value: 2 },
@@ -664,49 +676,49 @@ export const basicFields = [
     },
   },
 
-  // {
-  //   type: "static-text",
-  //   icon: "static-text",
-  //   formItemFlag: false,
-  //   options: {
-  //     name: "",
-  //     columnWidth: "200px",
-  //     hidden: false,
-  //     textContent: "static text",
-  //     textAlign: "left",
-  //     fontSize: "13px",
-  //     preWrap: false, //是否自动换行
-  //     //-------------------
-  //     customClass: "", //自定义css类名
-  //     //-------------------
-  //     onCreated: "",
-  //     onMounted: "",
-  //   },
-  // },
+  {
+    type: "static-text",
+    icon: "static-text",
+    formItemFlag: false,
+    options: {
+      // name: "",
+      columnWidth: "200px",
+      hidden: false,
+      textContent: "static text",
+      textAlign: "left",
+      fontSize: "13px",
+      preWrap: false, //是否自动换行
+      //-------------------
+      customClass: "", //自定义css类名
+      //-------------------
+      onCreated: "",
+      onMounted: "",
+    },
+  },
 
-  // {
-  //   type: "html-text",
-  //   icon: "html-text",
-  //   formItemFlag: false,
-  //   options: {
-  //     name: "",
-  //     columnWidth: "200px",
-  //     hidden: false,
-  //     htmlContent: "<b>html text</b>",
-  //     //-------------------
-  //     customClass: "", //自定义css类名
-  //     //-------------------
-  //     onCreated: "",
-  //     onMounted: "",
-  //   },
-  // },
+  {
+    type: "html-text",
+    icon: "html-text",
+    formItemFlag: false,
+    options: {
+      // name: "",
+      columnWidth: "200px",
+      hidden: false,
+      htmlContent: "<b>html text</b>",
+      //-------------------
+      customClass: "", //自定义css类名
+      //-------------------
+      onCreated: "",
+      onMounted: "",
+    },
+  },
 
   {
     type: "button",
     icon: "button",
     formItemFlag: false,
     options: {
-      name: "",
+      // name: "",
       label: "",
       columnWidth: "200px",
       size: "",
@@ -732,7 +744,7 @@ export const basicFields = [
     icon: "divider",
     formItemFlag: false,
     options: {
-      name: "",
+      // name: "",
       label: "",
       columnWidth: "200px",
       direction: "horizontal",
@@ -893,6 +905,10 @@ export const advancedFields = [
       multiple: false,
       checkStrictly: false, //可选择任意一级选项，默认不开启
       showAllLevels: true, //显示完整路径
+      // 类型 1 选项 2 数据字典
+      oType: '1',
+      // 字典id
+      dictionaryId: '',
       optionItems: [
         {
           label: "select 1",
@@ -924,18 +940,22 @@ export const advancedFields = [
 
 export const customFields = [];
 
+/** 加入容器组件 */
 export function addContainerWidgetSchema(containerSchema) {
   containers.push(containerSchema);
 }
 
+/** 加入基础字段 */
 export function addBasicFieldSchema(fieldSchema) {
   basicFields.push(fieldSchema);
 }
 
+/** 加入高级字段 */
 export function addAdvancedFieldSchema(fieldSchema) {
   advancedFields.push(fieldSchema);
 }
 
+/** 加入自定义字段  */
 export function addCustomWidgetSchema(widgetSchema) {
   customFields.push(widgetSchema);
 }

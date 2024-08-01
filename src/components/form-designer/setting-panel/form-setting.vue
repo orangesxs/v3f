@@ -28,11 +28,11 @@
             <el-input-number v-model="formConfig.labelWidth" :min="0" style="width: 100%"></el-input-number>
           </el-form-item>
           <!-- 全局css -->
-          <el-form-item :label="i18nt('designer.setting.formCss')">
+          <el-form-item v-if="hidden" :label="i18nt('designer.setting.formCss')">
             <el-button type="info" icon="el-icon-edit" plain round @click="editFormCss">{{i18nt('designer.setting.addCss')}}</el-button>
           </el-form-item>
           <!-- css -->
-          <el-form-item :label="i18nt('designer.setting.customClass')">
+          <el-form-item  v-if="hidden" :label="i18nt('designer.setting.customClass')">
             <el-select v-model="formConfig.customClass" multiple filterable allow-create
                        default-first-option>
               <el-option v-for="(item, idx) in cssClassList" :key="idx" :label="item" :value="item"></el-option>
@@ -40,14 +40,13 @@
           </el-form-item>
 
           <!-- 全局函数 -->
-          <el-form-item :label="i18nt('designer.setting.globalFunctions')">
+          <el-form-item  v-if="hidden" :label="i18nt('designer.setting.globalFunctions')">
             <el-button type="info" icon="el-icon-edit" plain round @click="editGlobalFunctions">{{i18nt('designer.setting.addEventHandler')}}</el-button>
           </el-form-item>
+        </el-collapse-item>
 
-          <!-- 表单设置 生成SFC设置 -->
-          <el-form-item  label-width="0">
-            <el-divider class="custom-divider">{{i18nt('designer.setting.formSFCSetting')}}</el-divider>
-          </el-form-item>
+        <!-- 表单设置 生成SFC设置 -->
+        <el-collapse-item v-if="hidden" name="2" :title="i18nt('designer.setting.formSFCSetting')">
           <el-form-item :label="i18nt('designer.setting.formModelName')">
             <el-input type="text" v-model="formConfig.modelName"></el-input>
           </el-form-item>
@@ -156,6 +155,8 @@
     inject: ['getDesignerConfig'],
     data() {
       return {
+        hidden: false,
+
         designerConfig: this.getDesignerConfig(),
 
         formActiveCollapseNames: ['1', '2'],

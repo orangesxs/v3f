@@ -55,10 +55,18 @@
                  :fullscreen="(layoutType === 'H5') || (layoutType === 'Pad')">
         <div>
           <div class="form-render-wrapper" :class="[layoutType === 'H5' ? 'h5-layout' : (layoutType === 'Pad' ? 'pad-layout' : '')]">
-            <VFormRender ref="preForm" :form-json="formJson" :form-data="testFormData" :preview-state="true"
-                         :option-data="testOptionData" :global-dsv="designerDsv" @myEmitTest="onMyEmitTest"
-                         @appendButtonClick="testOnAppendButtonClick" @buttonClick="testOnButtonClick"
-                         @formChange="handleFormChange">
+            <VFormRender 
+              ref="preForm" 
+              :form-json="formJson" 
+              :form-data="testFormData" 
+              :preview-state="true"
+              :option-data="testOptionData" 
+              :global-dsv="designerDsv"
+              :dictionary="dictionary"
+              @myEmitTest="onMyEmitTest"
+              @appendButtonClick="testOnAppendButtonClick" 
+              @buttonClick="testOnButtonClick"
+              @formChange="handleFormChange">
             </VFormRender>
           </div>
         </div>
@@ -205,7 +213,6 @@
   import {genSFC} from "@/utils/sfc-generator"
   import loadBeautifier from "@/utils/beautifierLoader"
   import { saveAs } from 'file-saver'
-  import axios from 'axios'
   import SvgIcon from "@/components/svg-icon/index";
 
   export default {
@@ -224,11 +231,11 @@
         default: () => ({})
       },
     },
-    inject: ['getDesignerConfig'],
+    inject: ['getDesignerConfig', 'getDictionary'],
     data() {
       return {
         designerConfig: this.getDesignerConfig(),
-
+        dictionary: this.getDictionary(),
         toolbarWidth: 460,
         showPreviewDialogFlag: false,
         showImportJsonDialogFlag: false,
@@ -638,20 +645,6 @@
       },
 
       testLoadForm() {
-        axios.get('https://www.fastmock.site/mock/e9710039bb5f11262d1a0f2f0bbe08c8/vform3/getFS').then(res => {
-          let newFormJson = res.data
-          this.$refs.preForm.setFormJson(newFormJson)
-          // let newFormData = {'input30696': '668899'}
-          // this.$refs.preForm.setFormData(newFormData)
-
-          console.log('test', 'aaaaaaaa')
-          this.$nextTick(() => {
-            let newFormData = {'input30696': '668899'}
-            this.$refs.preForm.setFormData(newFormData)
-          })
-        }).catch(err => {
-          //
-        })
       },
 
       testSetFormJson() {

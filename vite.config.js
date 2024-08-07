@@ -55,7 +55,7 @@ export default defineConfig({
   },
 
   define: {
-    // enable hydration mismatch details in production build
+    // 在生产构建中启用水合不匹配细节
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true'
   },
   build: {

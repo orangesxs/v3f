@@ -12,8 +12,7 @@
 
       <!-- :icon="field.options.icon" -->
       <template #icon>
-        <!-- <svg-icon :icon-class="field.options.icon" /> -->
-        <svg-icon icon-class="checkbox-field" />
+        <svg-icon :icon-class="field.options.icon" />
       </template>
     
     </el-button>

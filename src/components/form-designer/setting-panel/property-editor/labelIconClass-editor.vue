@@ -10,8 +10,11 @@
       <el-select v-model="optionModel.labelIconClass" clearable filterable :placeholder="i18nt('designer.acquiesce.selectText')">
         <el-option v-for="item in options"
           :key="item"
+          :value="item"
           :label="item"
-          :value="item">
+          >
+          <svg-icon :icon-class="item" />
+          {{ item }}
         </el-option>
       </el-select>
 
@@ -22,9 +25,13 @@
 <script>
   import i18n from "@/utils/i18n"
   import iconsSymbolIdData from '@/icons/generateSvgIconsJson/icons-symbolId.json'
+  import SvgIcon from '@/components/svg-icon'
   export default {
     name: "labelIconClass-editor",
     mixins: [i18n],
+    components: {
+      SvgIcon
+    },
     props: {
       designer: Object,
       selectedWidget: Object,

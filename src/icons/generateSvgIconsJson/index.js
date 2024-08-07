@@ -28,13 +28,16 @@ function generateIconsJson(directory) {
 
   const iconsDir = path.resolve(__dirname, directory);
   traverseDir(iconsDir);
+
+
+  const result = {}
   const symbolIdList = Object.keys(iconFiles);
-  iconFiles.symbolIdList = symbolIdList;
+  result.symbolIdList = symbolIdList;
 
   const outputPath = path.resolve(__dirname, "icons-symbolId.json");
 
   // 写入 JSON 文件
-  fs.writeFileSync(outputPath, JSON.stringify(iconFiles, null, 2));
+  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2));
 }
 
 // 调用函数并指定要处理的目录

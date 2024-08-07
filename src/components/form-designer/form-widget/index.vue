@@ -200,6 +200,7 @@
   }
 
   .form-widget-container {
+    height: 100%;
     padding: 10px;
     background: #f1f2f3;
     .el-form.full-height-width {
@@ -222,7 +223,8 @@
 
       .form-widget-list {
         background: #ffffff;
-        height: calc(100vh - 56px - 68px);
+        // height: calc(100vh - 56px - 68px);
+        height: 100%;
         padding: 14px;
         overflow-y: auto;
         overflow-x: hidden;

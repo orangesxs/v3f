@@ -9,7 +9,7 @@ export const createInputTextEditor = function (propName, propLabelKey) {
     render(h) {
       return (
         <el-form-item label={translate(propLabelKey)}>
-          <el-input type="text" v-model={this.optionModel[propName]} />
+          <el-input type="text" v-model={this.optionModel[propName]} placeholder={translate('designer.acquiesce.inputText')} />
         </el-form-item>
       )
     }
@@ -129,7 +129,7 @@ export const createSelectEditor = function (propName, propLabelKey, configs) {
     render(h) {
       return (
         <el-form-item label={translate(propLabelKey)}>
-          <el-select v-model={this.optionModel[propName]}>
+          <el-select v-model={this.optionModel[propName]} placeholder={translate('designer.acquiesce.selectText')}>
             {
               configs.optionItems.map(item => {
                 return <el-option label={item.label} value={item.value} />

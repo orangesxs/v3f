@@ -1,6 +1,6 @@
 <template>
-  <el-form-item v-if="!hasConfig('optionItems')" :label="i18nt('designer.setting.defaultValue')">
-    <el-input type="text" v-model="optionModel.defaultValue"
+  <el-form-item v-if="ifFormItem" :label="i18nt('designer.setting.defaultValue')"  :placeholder="i18nt('designer.acquiesce.inputText')">
+    <el-input type="text" v-model="optionModel.defaultValue" :placeholder="i18nt('designer.acquiesce.inputText')"
               @change="emitDefaultValueChange"></el-input>
   </el-form-item>
 </template>
@@ -17,6 +17,11 @@
       selectedWidget: Object,
       optionModel: Object,
     },
+    computed: {
+      ifFormItem() {
+        return !this.hasConfig('optionItems')
+      }
+    }
   }
 </script>
 

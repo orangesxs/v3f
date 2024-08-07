@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.maxLength')">
-    <el-input type="number" @input="inputNumberHandler" class="hide-spin-button"
-              min="1" v-model="maxLength" style="width: 100%"></el-input>
+    <el-input-number type="number" @input="inputNumberHandler" class="hide-spin-button"
+              :min="1" v-model="maxLength" style="width: 100%" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input-number>
   </el-form-item>
 </template>
 

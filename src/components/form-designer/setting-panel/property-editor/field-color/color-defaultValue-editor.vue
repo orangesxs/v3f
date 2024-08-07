@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="i18nt('designer.setting.defaultValue')">
+  <el-form-item :label="i18nt('designer.setting.defaultValue')"  :placeholder="i18nt('designer.acquiesce.inputText')">
     <el-color-picker v-model="optionModel.defaultValue" @change="emitDefaultValueChange">
     </el-color-picker>
   </el-form-item>

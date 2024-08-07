@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.endPlaceholder')">
-    <el-input type="text" v-model="optionModel.endPlaceholder"></el-input>
+    <el-input type="text" v-model="optionModel.endPlaceholder" :placeholder="i18nt('designer.acquiesce.endTimeText')"></el-input>
   </el-form-item>
 </template>
 

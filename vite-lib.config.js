@@ -22,9 +22,9 @@ export default defineConfig({
     visualizer(),
 
     viteSvgIcons({
-      // Specify the icon folder to be cached
+      // 指定要缓存的图标文件夹
       iconDirs: [resolve(process.cwd(), 'src/icons/svg')],
-      // Specify symbolId format
+      // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
     }),
 

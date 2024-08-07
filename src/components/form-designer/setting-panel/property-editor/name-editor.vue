@@ -1,5 +1,6 @@
 <template>
-  <el-form-item prop="name" :rules="nameRequiredRule">
+  <!-- 容器组件不显示 name 属性 -->
+  <el-form-item prop="name" :rules="nameRequiredRule" v-if="!selectedWidget.category">
     <template #label>
       <span>{{i18nt('designer.setting.uniqueName')}}
         <el-tooltip effect="light" :content="i18nt('designer.setting.editNameHelp')">
@@ -12,7 +13,7 @@
     <template v-else>
       <el-select v-model="optionModel.name" allow-create filterable :disabled="widgetNameReadonly" @change="updateWidgetNameAndRef"
                  :title="i18nt('designer.setting.editNameHelp')">
-        <el-option v-for="(sf, sfIdx) in serverFieldList" :key="sfIdx" :label="sf.label" :value="sf.name"></el-option>
+        <el-option v-for="(sf, sfIdx) in disabledServerFieldList" :key="sfIdx" :label="sf.label" :value="sf.name" :disabled="sf.disabled"></el-option>
       </el-select>
     </template>
   </el-form-item>
@@ -49,7 +50,27 @@
       widgetNameReadonly() {
         return !!this.getDesignerConfig().widgetNameReadonly
       },
-
+      disabledServerFieldList() {
+          // 获取当前选中的小部件名称
+        let oldName = this.designer.selectedWidgetName
+        const list = this.serverFieldList.map(item => {
+          // 检查新名称是否已经存在于表单小部件的引用列表中
+          let foundRef = this.designer.formWidget.getWidgetRef(item.name)
+          if (!!foundRef) {
+            // 如果找到重复的名称 true
+            return {
+              disabled: true,
+              ...item
+            }
+          } else {
+            return {
+              disabled: false,
+              ...item
+            }
+          }
+        })
+        return list
+      }
     },
     methods: {
       updateWidgetNameAndRef(newName) {

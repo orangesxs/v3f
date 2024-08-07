@@ -6,7 +6,7 @@
           {{ i18nt('designer.setting.optionsSetting') }}
         </el-radio-button>
         <el-radio-button label="2">
-          数据字典
+          {{ i18nt('designer.setting.dataDictionary') }}
         </el-radio-button>
       </el-radio-group>
     </div>
@@ -15,7 +15,7 @@
       <option-items-setting :designer="designer" :selected-widget="selectedWidget"></option-items-setting>
     </div>
     <div style="width: 100%;display: flex;" v-if="optionModel.oType === '2'">
-      <div style="width: 40%;">选择数据字典</div>
+      <div style="width: 40%;"> {{ i18nt('designer.setting.selectDictionary') }}</div>
       <el-select style="width: 60%;" v-model="optionModel.dictionaryId">
         <el-option v-for="item in dictOptions"
           :key="item.id"
@@ -49,8 +49,6 @@ import { deepClone } from "@/utils/util"
       OptionItemsSetting,
     },
     mounted() {
-      // optionItems
-      console.log('字典字典字典字典字典',this.getDictionary())
     },
     watch: {
       // 监听绑定字典id
@@ -73,7 +71,6 @@ import { deepClone } from "@/utils/util"
           if(type === '2') {
             this.getDictionary().forEach(item => {
               if(item.id === this.optionModel.dictionaryId) {
-              console.log('8888888888',)
                 this.optionModel.optionItems = deepClone(item.options)
               }
             })

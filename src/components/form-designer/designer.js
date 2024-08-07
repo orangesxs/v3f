@@ -37,12 +37,12 @@ export function createDesigner(vueInstance) {
       this.widgetList = []
       this.formConfig = deepClone(defaultFormConfig)
 
-      //输出版本信息和语雀链接
-      console.info(`%cVariantForm %cVer${VARIANT_FORM_VERSION} %chttps://www.yuque.com/visualdev/vform3`,
-          "color:#409EFF;font-size: 22px;font-weight:bolder",
-          "color:#999;font-size: 12px",
-          "color:#333"
-      )
+      // //输出版本信息和语雀链接
+      // console.info(`%cVariantForm %cVer${VARIANT_FORM_VERSION} %chttps://www.yuque.com/visualdev/vform3`,
+      //     "color:#409EFF;font-size: 22px;font-weight:bolder",
+      //     "color:#999;font-size: 12px",
+      //     "color:#333"
+      // )
 
       if (!resetFormJson) {
         this.initHistoryData()
@@ -729,7 +729,8 @@ export function createDesigner(vueInstance) {
       let newWidget = deepClone(origin)
       let tempId = generateId()
       newWidget.id = newWidget.type.replace(/-/g, '') + tempId
-      //console.log('test id===', newWidget.id)
+
+      // 添加创建元素时的默认属性值
       newWidget.options.name = newWidget.id
       newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
 

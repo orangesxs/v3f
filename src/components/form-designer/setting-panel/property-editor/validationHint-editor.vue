@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.validationHint')">
-    <el-input type="text" v-model="optionModel.validationHint"></el-input>
+    <el-input type="text" v-model="optionModel.validationHint" :placeholder="i18nt('designer.setting.validationHintPlaceholder')"></el-input>
   </el-form-item>
 </template>
 

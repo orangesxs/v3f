@@ -7,7 +7,7 @@
       <el-option label="warning" value="warning"></el-option>
       <el-option label="danger" value="danger"></el-option>
       <el-option label="info" value="info"></el-option>
-      <el-option label="text" value="text"></el-option>
+      <!-- <el-option label="text" value="text"></el-option> -->
     </el-select>
   </el-form-item>
 </template>

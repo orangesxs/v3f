@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="i18nt('designer.setting.defaultValue')">
+  <el-form-item :label="i18nt('designer.setting.defaultValue')"  :placeholder="i18nt('designer.acquiesce.inputText')">
     <el-switch v-model="optionModel.defaultValue" @change="emitDefaultValueChange"
                active-text="true" inactive-text="false"></el-switch>
   </el-form-item>

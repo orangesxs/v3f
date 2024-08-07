@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-form-item :label="i18nt('designer.setting.gridColHeight')">
-      <el-input type="number" v-model="optionModel.colHeight" @input="inputNumberHandler"
-                min="0" class="hide-spin-button"></el-input>
+      <el-input-number type="number" v-model="optionModel.colHeight" @input="inputNumberHandler" style="width: 100%;"
+                :min="0" class="hide-spin-button" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input-number>
     </el-form-item>
   </div>
 </template>

@@ -202,14 +202,8 @@
   .form-widget-container {
     padding: 10px;
     background: #f1f2f3;
-
-    overflow-x: hidden;
-    overflow-y: auto;
-
     .el-form.full-height-width {
       height: 100%;
-      padding: 3px;
-      background: #ffffff;
 
       .no-widget-hint {
         position: absolute;
@@ -227,8 +221,11 @@
       }
 
       .form-widget-list {
-        min-height: calc(100vh - 56px - 68px);
-        padding: 3px;
+        background: #ffffff;
+        height: calc(100vh - 56px - 68px);
+        padding: 14px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
     }
 

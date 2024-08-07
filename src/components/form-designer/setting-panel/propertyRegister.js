@@ -8,6 +8,7 @@ const COMMON_PROPERTIES = {
   'name'              :            'name-editor',
   'label'             :            'label-editor',
   'labelAlign'        :            'labelAlign-editor',
+  'link'              :            'link-editor',
   'type'              :            'type-editor',
   'defaultValue'      :            'defaultValue-editor',
   'placeholder'       :            'placeholder-editor',

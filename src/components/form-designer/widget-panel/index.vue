@@ -1,7 +1,7 @@
 <template>
   <el-scrollbar class="side-scroll-bar" :style="{ height: scrollerHeight }">
     <div class="panel-container">
-      <el-tabs v-model="firstTab" class="no-bottom-margin indent-left-margin">
+      <el-tabs v-model="firstTab" class="no-bottom-margin indent-left-margin tabs">
         <el-tab-pane name="componentLib">
           <template #label>
             <span>
@@ -231,7 +231,7 @@ export default {
 
       firstTab: "componentLib",
 
-      scrollerHeight: 0,
+      scrollerHeight: '100%',
 
       activeNames: ["1", "2", "3", "4"],
 
@@ -251,13 +251,13 @@ export default {
   mounted() {
     //this.loadWidgets()
 
-    this.scrollerHeight = window.innerHeight - 56 + "px";
-    addWindowResizeHandler(() => {
-      this.$nextTick(() => {
-        this.scrollerHeight = window.innerHeight - 56 + "px";
-        //console.log(this.scrollerHeight)
-      });
-    });
+    // this.scrollerHeight = window.innerHeight - 56 + "px";
+    // addWindowResizeHandler(() => {
+    //   this.$nextTick(() => {
+    //     this.scrollerHeight = window.innerHeight - 56 + "px";
+    //     //console.log(this.scrollerHeight)
+    //   });
+    // });
   },
   methods: {
     isBanned(wName) {
@@ -394,12 +394,33 @@ export default {
 
 .side-scroll-bar {
   :deep(.el-scrollbar__wrap) {
+    height: 100%;
     overflow-x: hidden;
+
+    .el-scrollbar__view {
+      height: 100%;
+      .tabs {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .el-tabs__content {
+          flex: 1;
+          height: 0;
+          .el-tab-pane{
+            height: 100%;
+            overflow-y: auto;
+          }
+        }
+      }
+    }
   }
+
+
 }
 
 div.panel-container {
-  padding-bottom: 10px;
+  height: 100%;
+  // padding-bottom: 10px;
 }
 
 .no-bottom-margin :deep(.el-tabs__header) {
@@ -420,7 +441,7 @@ div.panel-container {
   border-top-width: 0;
 
   :deep(.el-collapse-item__header) {
-    margin-left: 8px;
+    padding: 0 4px;
     font-style: italic;
     font-weight: bold;
   }
@@ -447,7 +468,6 @@ div.panel-container {
         height: 32px;
         line-height: 32px;
         width: 98px;
-        float: left;
         margin: 2px 6px 6px 0;
         cursor: move;
         white-space: nowrap;
@@ -457,6 +477,8 @@ div.panel-container {
         border: 1px solid #e8e9eb;
         border-radius: 4px;
         padding: 0 8px;
+        box-sizing: border-box;
+        width: calc(50% - 10px);
       }
 
       .container-widget-item:hover,

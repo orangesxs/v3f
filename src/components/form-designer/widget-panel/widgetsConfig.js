@@ -3,6 +3,11 @@
 // 3.  新增：日期时间选择器
 // 4.  修改： 唯一名称、标签、字段校验默认提示
 // 5.  上传、选项类数据 调用后端接口
+import { translate } from "@/utils/i18n"
+function translateText(key, namespace = "designer.acquiesce") {
+  const str = namespace + '.' + key
+  return translate(str)
+}
 
 export const containers = [
   {
@@ -12,10 +17,10 @@ export const containers = [
     cols: [],
     options: {
       name: "",
-      hidden: false,
+      // hidden: false,
       gutter: 12,
       colHeight: null, //栅格列统一高度属性，用于解决栅格列设置响应式布局浮动后被挂住的问题！！
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
     },
   },
 
@@ -27,16 +32,16 @@ export const containers = [
     widgetList: [],
     options: {
       name: "",
-      hidden: false,
+      // hidden: false,
       span: 12,
       offset: 0,
       push: 0,
       pull: 0,
-      responsive: false, //是否开启响应式布局
+      // responsive: false, //是否开启响应式布局
       md: 12,
       sm: 12,
       xs: 12,
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
     },
   },
   
@@ -48,8 +53,8 @@ export const containers = [
     tabs: [],
     options: {
       name: "",
-      hidden: false,
-      customClass: "", //自定义css类名
+      // hidden: false,
+      customClass: "", //自定义css类名 && tab选项卡设置  当前已注释自定义css类名
     },
   },
 
@@ -60,8 +65,8 @@ export const containers = [
     rows: [],
     options: {
       name: "",
-      hidden: false,
-      customClass: "", //自定义css类名
+      // hidden: false,
+      // customClass: "", //自定义css类名
     },
   },
 
@@ -79,7 +84,7 @@ export const containers = [
       colspan: 1,
       rowspan: 1,
       wordBreak: false, //是否自动换行
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
     },
   },
 
@@ -92,10 +97,10 @@ export const containers = [
     options: {
       name: "",
       label: "",
-      hidden: false,
+      // hidden: false,
       active: false,
       disabled: false,
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
     },
   },
 ];
@@ -111,22 +116,22 @@ export const basicFields = [
       labelAlign: "",
       type: "text",
       defaultValue: "",
-      placeholder: "",
+      placeholder: translateText('inputText'),
       columnWidth: "200px",
       size: "",
       labelWidth: null,
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       showPassword: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -135,9 +140,9 @@ export const basicFields = [
       showWordLimit: false,
       prefixIcon: "",
       suffixIcon: "",
-      appendButton: false,
-      appendButtonDisabled: false,
-      buttonIcon: "custom-search",
+      // appendButton: false,
+      // appendButtonDisabled: false,
+      // buttonIcon: "custom-search",
       //-------------------
       onCreated: "",
       onMounted: "",
@@ -160,20 +165,20 @@ export const basicFields = [
       labelAlign: "",
       rows: 3,
       defaultValue: "",
-      placeholder: "",
+      placeholder: translateText('inputText'),
       columnWidth: "200px",
       size: "",
       labelWidth: null,
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -200,24 +205,24 @@ export const basicFields = [
       label: "",
       labelAlign: "",
       defaultValue: 0,
-      placeholder: "",
+      placeholder: translateText('inputText'),
       columnWidth: "200px",
       size: "",
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
-      min: -100000000000,
-      max: 100000000000,
+      min: -0,
+      max: 10000,
       precision: 0,
       step: 1,
       controlsPosition: "right",
@@ -248,7 +253,7 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       // 类型 1 选项 2 数据字典
       oType: '1',
       // 字典id
@@ -259,11 +264,11 @@ export const basicFields = [
         { label: "radio 3", value: 3 },
       ],
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -292,7 +297,7 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       // 类型 1 选项 2 数据字典
       oType: '1',
       // 字典id
@@ -303,11 +308,11 @@ export const basicFields = [
         { label: "check 3", value: 3 },
       ],
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -328,13 +333,13 @@ export const basicFields = [
       label: "",
       labelAlign: "",
       defaultValue: "",
-      placeholder: "",
+      placeholder: translateText('selectText'),
       columnWidth: "200px",
       size: "",
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       filterable: false,
       allowCreate: false,
@@ -352,11 +357,11 @@ export const basicFields = [
         { label: "select 3", value: 3 },
       ],
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -380,7 +385,7 @@ export const basicFields = [
       label: "",
       labelAlign: "",
       defaultValue: null,
-      placeholder: "",
+      placeholder: translateText('selectText'),
       columnWidth: "200px",
       size: "",
       autoFullWidth: true,
@@ -388,16 +393,16 @@ export const basicFields = [
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       editable: false,
       format: "HH:mm:ss", //时间格式
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -420,8 +425,8 @@ export const basicFields = [
       label: "",
       labelAlign: "",
       defaultValue: null,
-      startPlaceholder: "",
-      endPlaceholder: "",
+      startPlaceholder: translateText('startTimeText'),
+      endPlaceholder: translateText('endTimeText'),
       columnWidth: "200px",
       size: "",
       autoFullWidth: true,
@@ -429,16 +434,16 @@ export const basicFields = [
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       editable: false,
       format: "HH:mm:ss", //时间格式
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -462,7 +467,7 @@ export const basicFields = [
       labelAlign: "",
       type: "date",
       defaultValue: null,
-      placeholder: "",
+      placeholder: translateText('selectText'),
       columnWidth: "200px",
       size: "",
       autoFullWidth: true,
@@ -470,17 +475,17 @@ export const basicFields = [
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       editable: false,
       format: "YYYY-MM-DD", //日期显示格式
       valueFormat: "YYYY-MM-DD", //日期对象格式
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -506,8 +511,8 @@ export const basicFields = [
       format: "YYYY-MM-DD", //日期显示格式
       valueFormat: "YYYY-MM-DD", //日期对象格式
       defaultValue: null,
-      startPlaceholder: "",
-      endPlaceholder: "",
+      startPlaceholder: translateText('startTimeText'),
+      endPlaceholder: translateText('endTimeText'),
       columnWidth: "200px",
       size: "",
       autoFullWidth: true,
@@ -515,15 +520,15 @@ export const basicFields = [
       labelHidden: false,
       readonly: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       editable: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -550,9 +555,9 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -582,13 +587,13 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -620,13 +625,13 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -652,13 +657,13 @@ export const basicFields = [
       labelWidth: null,
       labelHidden: false,
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       validation: "",
       validationHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -681,15 +686,15 @@ export const basicFields = [
     icon: "static-text",
     formItemFlag: false,
     options: {
-      // name: "",
+      name: "",
       columnWidth: "200px",
-      hidden: false,
+      // hidden: false,
       textContent: "static text",
       textAlign: "left",
       fontSize: "13px",
       preWrap: false, //是否自动换行
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       //-------------------
       onCreated: "",
       onMounted: "",
@@ -701,12 +706,12 @@ export const basicFields = [
     icon: "html-text",
     formItemFlag: false,
     options: {
-      // name: "",
+      name: "",
       columnWidth: "200px",
-      hidden: false,
+      // hidden: false,
       htmlContent: "<b>html text</b>",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       //-------------------
       onCreated: "",
       onMounted: "",
@@ -718,20 +723,21 @@ export const basicFields = [
     icon: "button",
     formItemFlag: false,
     options: {
-      // name: "",
+      name: "",
       label: "",
       columnWidth: "200px",
       size: "",
       displayStyle: "block",
       disabled: false,
-      hidden: false,
+      // hidden: false,
       type: "",
+      link: false,
       plain: false,
       round: false,
       circle: false,
       icon: null,
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       //-------------------
       onCreated: "",
       onMounted: "",
@@ -744,14 +750,14 @@ export const basicFields = [
     icon: "divider",
     formItemFlag: false,
     options: {
-      // name: "",
+      name: "",
       label: "",
       columnWidth: "200px",
       direction: "horizontal",
       contentPosition: "center",
-      hidden: false,
+      // hidden: false,
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       //-------------------
       onCreated: "",
       onMounted: "",
@@ -774,9 +780,9 @@ export const advancedFields = [
       labelHidden: false,
       columnWidth: "200px",
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       customRule: "",
       customRuleHint: "",
       //-------------------
@@ -790,7 +796,7 @@ export const advancedFields = [
       fileTypes: ["jpg", "jpeg", "png"],
       //headers: [],
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -818,9 +824,9 @@ export const advancedFields = [
       labelHidden: false,
       columnWidth: "200px",
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       customRule: "",
       customRuleHint: "",
       //-------------------
@@ -834,7 +840,7 @@ export const advancedFields = [
       fileTypes: ["doc", "docx", "xls", "xlsx"],
       //headers: [],
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -858,19 +864,19 @@ export const advancedFields = [
       name: "",
       label: "",
       labelAlign: "",
-      placeholder: "",
+      placeholder: translateText('inputText'),
       labelWidth: null,
       labelHidden: false,
       columnWidth: "200px",
       contentHeight: "200px",
       disabled: false,
-      hidden: false,
+      // hidden: false,
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       customRule: "",
       customRuleHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,
@@ -893,13 +899,13 @@ export const advancedFields = [
       label: "",
       labelAlign: "",
       defaultValue: "",
-      placeholder: "",
+      placeholder: translateText('selectText'),
       size: "",
       labelWidth: null,
       labelHidden: false,
       columnWidth: "200px",
       disabled: false,
-      hidden: false,
+      // hidden: false,
       clearable: true,
       filterable: false,
       multiple: false,
@@ -919,11 +925,11 @@ export const advancedFields = [
         { label: "select 3", value: 3 },
       ],
       required: false,
-      requiredHint: "",
+      requiredHint: translateText('required'),
       customRule: "",
       customRuleHint: "",
       //-------------------
-      customClass: "", //自定义css类名
+      // customClass: "", //自定义css类名
       labelIconClass: null,
       labelIconPosition: "rear",
       labelTooltip: null,

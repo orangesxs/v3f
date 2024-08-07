@@ -13,25 +13,10 @@
     <!-- 头部信息 -->
     <!-- <el-header class="main-header">
       <div class="float-left main-title">
-        <img src="../../assets/vform-logo.png" @click="openHome">
+        <img src="../../assets/vform-logo.png">
         <span class="bold">VForm 3</span> {{i18nt('application.productTitle')}} <span class="version-span">Ver {{vFormVersion}}</span>
       </div>
       <div class="float-right external-link">
-        <el-dropdown v-if="backConfigItem('languageMenu')" :hide-timeout="2000" @command="handleLanguageChanged">
-          <span class="el-dropdown-link">{{curLangName}}<svg-icon icon-class="el-arrow-down" /></span>
-          <template #dropdown>
-            <el-dropdown-menu>
-              <el-dropdown-item command="zh-CN">{{i18nt('application.zh-CN')}}</el-dropdown-item>
-              <el-dropdown-item command="en-US">{{i18nt('application.en-US')}}</el-dropdown-item>
-            </el-dropdown-menu>
-          </template>
-        </el-dropdown>
-        <a v-if="backConfigItem('externalLink')" href="javascript:void(0)" @click="(ev) => openUrl(ev, gitUrl)" target="_blank"><svg-icon icon-class="github" />{{i18nt('application.github')}}</a>
-        <a v-if="backConfigItem('externalLink')" href="javascript:void(0)" @click="(ev) => openUrl(ev, docUrl)" target="_blank"><svg-icon icon-class="document" />{{i18nt('application.document')}}</a>
-        <a v-if="backConfigItem('externalLink')" href="javascript:void(0)" @click="(ev) => openUrl(ev, chatUrl)" target="_blank">{{i18nt('application.qqGroup')}}</a>
-        <a v-if="backConfigItem('externalLink')" href="javascript:void(0)" @click="(ev) => openUrl(ev, subScribeUrl)" target="_blank">
-          {{i18nt('application.subscription')}}<i class="el-icon-top-right"></i>
-        </a>
       </div>
     </el-header> -->
 
@@ -49,10 +34,10 @@
           </toolbar-panel>
         </el-header>
         <el-main class="form-widget-main">
-          <el-scrollbar class="container-scroll-bar" :style="{height: scrollerHeight}">
+          <!-- <el-scrollbar class="container-scroll-bar" :style="{height: scrollerHeight}"> -->
             <v-form-widget :designer="designer" :form-config="designer.formConfig" :global-dsv="globalDsv" ref="formRef">
             </v-form-widget>
-          </el-scrollbar>
+          <!-- </el-scrollbar> -->
         </el-main>
       </el-container>
 
@@ -89,6 +74,11 @@
       VFormWidget,
     },
     props: {
+      /** 侧边栏宽度 最低 240px */
+      sidePanelWidth: {
+        type: String,
+        default: '240px',
+      },
       /* 语言 默认中文 已监听 可选值 zh-CN | en-US */
       locale: {
         type: String,
@@ -180,15 +170,12 @@
         vFormVersion: VARIANT_FORM_VERSION,
         curLangName: '',
         curLocale: '',
-
-        vsCodeFlag: false,
-
         docUrl: 'https://www.vform666.com/document3.html',
         gitUrl: 'https://github.com/vform666/variant-form3-vite',
         chatUrl: 'https://www.vform666.com/pages/chat-group/',
         subScribeUrl: 'https://www.vform666.com/pages/pro/',
 
-        scrollerHeight: 0,
+        scrollerHeight: '100%',
 
         designer: createDesigner(this),
 
@@ -206,7 +193,6 @@
       }
     },
     created() {
-      this.vsCodeFlag = getQueryParam('vscode') == 1
     },
     watch: {
       locale: {
@@ -217,12 +203,13 @@
       },
     },
     mounted() {
-      this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
-      addWindowResizeHandler(() => {
-        this.$nextTick(() => {
-          this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
-        })
-      })
+      // this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
+      // addWindowResizeHandler(() => {
+      //   this.$nextTick(() => {
+      //     this.scrollerHeight = window.innerHeight - 56 - 36 + 'px'
+      //   })
+      // })
+
     },
     methods: {
       // 发送事件
@@ -241,45 +228,6 @@
 
         return !!this.designerConfig[configName]
       },
-
-      openHome() {
-        if (!!this.vsCodeFlag) {
-          const msgObj = {
-            cmd: 'openUrl',
-            data: {
-              url: 'https://www.vform666.com/'
-            }
-          }
-          window.parent.postMessage(msgObj, '*')
-        }
-      },
-
-      openUrl(event, url) {
-        if (!!this.vsCodeFlag) {
-          const msgObj = {
-            cmd: 'openUrl',
-            data: {
-              url
-            }
-          }
-          window.parent.postMessage(msgObj, '*')
-        } else {
-          let aDom = event.currentTarget
-          aDom.href = url
-          //window.open(url, '_blank') //直接打开新窗口，会被浏览器拦截
-        }
-      },
-
-      // initLocale() {
-      //   this.curLocale = localStorage.getItem('v_form_locale')
-      //   if (!!this.vsCodeFlag) {
-      //     this.curLocale = this.curLocale || 'en-US'
-      //   } else {
-      //     this.curLocale = this.curLocale || 'zh-CN'
-      //   }
-      //   this.curLangName = this.i18nt('application.' + this.curLocale)
-      //   this.changeLanguage(this.curLocale)
-      // },
       /** 切换语言 */
       handleLanguageChanged(command) {
         this.changeLanguage(command)
@@ -436,63 +384,9 @@
     border-right: 2px dotted #EBEEF5;
   }
 
-  .el-header.main-header {
-    border-bottom: 2px dotted #EBEEF5;
-    height: 48px !important;
-    line-height: 48px !important;
-    min-width: 800px;
-  }
-
-  div.main-title {
-    font-size: 18px;
-    color: #242424;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-
-    img {
-      cursor: pointer;
-      width: 36px;
-      height: 36px;
-    }
-
-    span.bold {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 0 6px 0 6px;
-    }
-
-    span.version-span {
-      font-size: 14px;
-      color: #101F1C;
-      margin-left: 6px;
-    }
-  }
-
-  .float-left {
-    float: left;
-  }
-
-  .float-right {
-    height: 100%;
-    float: right;
-  }
-
   .el-dropdown-link {
     margin-right: 12px;
     cursor: pointer;
-  }
-
-  div.external-link {
-    display: flex;
-    align-items: center;
-
-    a {
-      font-size: 13px;
-      text-decoration: none;
-      margin-right: 10px;
-      color: #606266;
-    }
   }
 
   .el-header.toolbar-header {
@@ -503,7 +397,7 @@
   }
 
   .el-aside.side-panel {
-    width: 260px !important;
+    width: v-bind(sidePanelWidth) !important;
     overflow-y: hidden;
   }
 

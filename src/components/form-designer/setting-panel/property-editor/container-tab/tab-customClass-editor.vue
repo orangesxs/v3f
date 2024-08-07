@@ -4,12 +4,12 @@
 
 <template>
   <div>
-    <el-form-item :label="i18nt('designer.setting.customClass')">
+    <!-- <el-form-item :label="i18nt('designer.setting.customClass')">
       <el-select v-model="optionModel.customClass" multiple filterable allow-create
                  default-first-option>
         <el-option v-for="(item, idx) in cssClassList" :key="idx" :label="item" :value="item"></el-option>
       </el-select>
-    </el-form-item>
+    </el-form-item> -->
     <el-form-item :label="i18nt('designer.setting.tabPaneSetting')"></el-form-item>
     <el-form-item label-width="0" class="panes-setting">
       <draggable tag="ul" :list="selectedWidget.tabs" item-key="id"

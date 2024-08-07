@@ -11,12 +11,20 @@
               :clearable="field.options.clearable"
               :minlength="field.options.minLength" :maxlength="field.options.maxLength"
               :show-word-limit="field.options.showWordLimit"
-              :prefix-icon="field.options.prefixIcon" :suffix-icon="field.options.suffixIcon"
               @focus="handleFocusCustomEvent" @blur="handleBlurCustomEvent" @input="handleInputCustomEvent"
               @change="handleChangeEvent">
+              <!-- :prefix-icon="field.options.prefixIcon" :suffix-icon="field.options.suffixIcon" -->
+
+      <template #prefix v-if="field.options.prefixIcon">
+        <svg-icon :icon-class="field.options.prefixIcon" />
+      </template>
+      <template #suffix v-if="field.options.suffixIcon">
+        <svg-icon :icon-class="field.options.suffixIcon" />
+      </template>
       <template #append v-if="field.options.appendButton">
-        <el-button :disabled="field.options.disabled || field.options.appendButtonDisabled"
-                   @click="emitAppendButtonClick"><svg-icon :icon-class="field.options.buttonIcon" /></el-button>
+        <el-button :disabled="field.options.disabled || field.options.appendButtonDisabled" @click="emitAppendButtonClick">
+          <svg-icon :icon-class="field.options.buttonIcon" />
+        </el-button>
       </template>
     </el-input>
   </form-item-wrapper>

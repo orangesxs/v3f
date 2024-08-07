@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.labelTooltip')">
-    <el-input type="text" v-model="optionModel.labelTooltip"></el-input>
+    <el-input type="text" v-model="optionModel.labelTooltip" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input>
   </el-form-item>
 </template>
 

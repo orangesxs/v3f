@@ -39,7 +39,7 @@
     </el-form-item>
 
     <template v-if="!!this.designer">
-      <div class="field-action" v-if="designer.selectedId === field.id">
+      <div class="field-action background-opacity" v-if="designer.selectedId === field.id">
         <i :title="i18nt('designer.hint.selectParentWidget')"
            @click.stop="selectParentWidget(field)"><svg-icon icon-class="el-back" /></i>
         <i v-if="!!parentList && (parentList.length > 1)" :title="i18nt('designer.hint.moveUpWidget')"
@@ -235,13 +235,18 @@
 
     .field-action{
       position: absolute;
-      //bottom: -24px;
+      // bottom: -24px;
       bottom: 0;
       right: -2px;
       height: 22px;
       line-height: 22px;
-      background: $--color-primary;
+      // background: $--color-primary;
       z-index: 9;
+
+      &:hover {
+        //opacity: 1;
+        background: $--color-primary;
+      }
 
       i {
         font-size: 14px;
@@ -289,6 +294,7 @@
 
     //margin-top: 2px;
     position: relative;
+    padding: 4px 0;
 
     :deep(.el-form-item__label) {
       white-space: nowrap;

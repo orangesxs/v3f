@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.activeText')">
-    <el-input v-model="optionModel.activeText"></el-input>
+    <el-input v-model="optionModel.activeText" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input>
   </el-form-item>
 </template>
 

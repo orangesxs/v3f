@@ -130,13 +130,21 @@ export default {
       nameRequired: 'Name required.',
 
       numberValidator: 'Number',
+      numberValidatorErr: 'Contains non-numeric characters',
       letterValidator: 'Letter',
+      letterValidatorErr: 'Contains non-alphabetic characters',
       letterAndNumberValidator: 'LetterAndNumber',
+      letterAndNumberValidatorErr: 'You can only enter letters or numbers',
       mobilePhoneValidator: 'MobilePhone',
+      mobilePhoneValidatorErr: 'The mobile number format is incorrect',
       emailValidator: 'Email',
+      emailValidatorErr: 'Incorrect email format',
       urlValidator: 'URL',
+      urlValidatorErr: 'URL wrong format',
       noChineseValidator: 'Non-Chinese',
+      noChineseValidatorErr: 'Cannot enter Chinese characters',
       chineseValidator: 'Chinese',
+      chineseValidatorErr: 'Only Chinese characters can be entered',
 
       rowspanNotConsistentForMergeEntireRow: 'Cells in this row don\'t have the same rowspan, operation failed.',
       colspanNotConsistentForMergeEntireColumn: 'Cells in this column don\'t have the same colspan, operation failed.',
@@ -188,7 +196,8 @@ export default {
       blockLayout: 'block',
       buttonStyle: 'Show As Button',
       border: 'Show Border',
-      labelWidth: 'Width Of Label',
+      labelWidth: 'Width Of Label (px)',
+      labelWidthHelp: 'If this parameter is not specified, the default width is the global width of the form',
       rows: 'Rows',
       labelHidden: 'Hide Label',
       required: 'Required',
@@ -219,8 +228,11 @@ export default {
       plain: 'Plain',
       round: 'Round',
       circle: 'Circle',
+      link: 'Is link button',
       icon: 'Icon',
       optionsSetting: 'Options Setting',
+      dataDictionary: 'Data dictionary',
+      selectDictionary: 'Selective data dictionary',
       addOption: 'Add Option',
       importOptions: 'Import Options',
       resetDefault: 'Reset Default',
@@ -326,8 +338,18 @@ export default {
       formRefName: 'Ref Name',
       formRulesName: 'Rules Name',
       syntaxCheckWarning: 'Syntax error in the javascript codes, please check again!',
+      validationHintPlaceholder: 'Please input'
+    },
 
-    }
+    acquiesce: {
+      inputText: 'Please enter',
+      selectText: 'Please select',
+      startTimeText: 'Start time',
+      endTimeText: 'End time',
+      required: 'This field is required!',
+    },
+
+
 
   }
 }

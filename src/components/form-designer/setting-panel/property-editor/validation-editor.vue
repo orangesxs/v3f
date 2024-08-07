@@ -6,7 +6,7 @@
           <svg-icon icon-class="el-info" /></el-tooltip>
       </span>
     </template>
-    <el-select v-model="optionModel.validation" filterable clearable allow-create default-first-option>
+    <el-select v-model="optionModel.validation" @change="changeValidation" filterable clearable allow-create default-first-option>
       <el-option v-for="(fv, fvIdx) in fieldValidators"
                  :key="fvIdx"
                  :label="fv.label"
@@ -18,6 +18,7 @@
 
 <script>
   import i18n from "@/utils/i18n"
+  import { fieldValidators } from "@/utils/validators";
   import SvgIcon from "@/components/svg-icon/index";
 
   export default {
@@ -33,18 +34,20 @@
     },
     data() {
       return {
-        fieldValidators: [
-          {value: 'number', label: this.i18nt('designer.hint.numberValidator')},
-          {value: 'letter', label: this.i18nt('designer.hint.letterValidator')},
-          {value: 'letterAndNumber', label: this.i18nt('designer.hint.letterAndNumberValidator')},
-          {value: 'mobilePhone', label: this.i18nt('designer.hint.mobilePhoneValidator')},
-          {value: 'email', label: this.i18nt('designer.hint.emailValidator')},
-          {value: 'url', label: this.i18nt('designer.hint.urlValidator')},
-          {value: 'noChinese', label: this.i18nt('designer.hint.noChineseValidator')},
-          {value: 'chinese', label: this.i18nt('designer.hint.chineseValidator')},
-        ],
+        fieldValidators: fieldValidators
       }
     },
+    methods: {
+      changeValidation(v) {
+        console.log(v)
+        const item = this.fieldValidators.find(fv => fv.value === v)
+        if (item) {
+          this.optionModel.validationHint = this.optionModel.label + item.defaultErrorMsg
+        } else {
+          this.optionModel.validationHint = ''
+        }
+      }
+    }
 
   }
 </script>

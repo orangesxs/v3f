@@ -1,6 +1,6 @@
 <template>
   <el-container class="panel-container">
-    <el-tabs v-model="activeTab" style="height: 100%; width:100%; overflow: hidden">
+    <el-tabs v-model="activeTab" class="tabs">
       <el-tab-pane :label="i18nt('designer.hint.widgetSetting')" name="1">
         <el-scrollbar class="setting-scrollbar" :style="{height: scrollerHeight}">
           <template v-if="!!designer.selectedWidget && !designer.selectedWidget.category">
@@ -119,7 +119,7 @@
       return {
         designerConfig: this.getDesignerConfig(),
 
-        scrollerHeight: 0,
+        scrollerHeight: '100%',
 
         activeTab: "2",
         widgetActiveCollapseNames: ['1', '3'], //['1', '2', '3'],
@@ -190,13 +190,13 @@
         this.activeTab = "1"
       }
 
-      this.scrollerHeight = window.innerHeight - 56 - 48 + 'px'
-      addWindowResizeHandler(() => {
-        this.$nextTick(() => {
-          this.scrollerHeight = window.innerHeight - 56 - 48 + 'px'
-          //console.log(this.scrollerHeight)
-        })
-      })
+      // this.scrollerHeight = window.innerHeight - 56 - 48 + 'px'
+      // addWindowResizeHandler(() => {
+      //   this.$nextTick(() => {
+      //     this.scrollerHeight = window.innerHeight - 56 - 48 + 'px'
+      //     //console.log(this.scrollerHeight)
+      //   })
+      // })
     },
     methods: {
       showEventCollapse() {
@@ -295,6 +295,19 @@
 <style lang="scss" scoped>
   .panel-container {
     padding: 0 8px;
+    height: 100%;
+
+    .tabs {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      :deep(.el-tabs__content) {
+        flex: 1;
+        height: 0;
+        overflow: auto;
+      }
+    }
   }
 
   .setting-scrollbar {

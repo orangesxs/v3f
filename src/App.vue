@@ -32,8 +32,7 @@ export default {
         optionsDict: DATA.optionsDict
       },
       dictionary: DATA.optionsDict,
-      // fieldList: DATA.fieldList,
-      fieldList: [],
+      fieldList: DATA.fieldList,
       formTemplates: DATA.formTemplates,
       locale: 'zh-CN'
     };
@@ -67,6 +66,7 @@ export default {
 <style lang="scss">
 #app {
   height: 100%;
-  overflow: auto;
+  // overflow: auto;
+  // height: 800px;
 }
 </style>

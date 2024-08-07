@@ -4,10 +4,19 @@
                      :sub-form-row-index="subFormRowIndex" :sub-form-col-index="subFormColIndex" :sub-form-row-id="subFormRowId">
     <el-button ref="fieldEditor" :type="field.options.type" :size="widgetSize"
                :plain="field.options.plain" :round="field.options.round"
-               :circle="field.options.circle" :icon="field.options.icon"
+               :circle="field.options.circle"
+               :link="field.options.link"
                :disabled="field.options.disabled"
                @click="handleButtonWidgetClick">
-      {{field.options.label}}</el-button>
+      {{field.options.label}}
+
+      <!-- :icon="field.options.icon" -->
+      <template #icon>
+        <!-- <svg-icon :icon-class="field.options.icon" /> -->
+        <svg-icon icon-class="checkbox-field" />
+      </template>
+    
+    </el-button>
   </static-content-wrapper>
 </template>
 
@@ -16,7 +25,7 @@
   import emitter from '@/utils/emitter'
   import i18n, {translate} from "@/utils/i18n";
   import fieldMixin from "@/components/form-designer/form-widget/field-widget/fieldMixin";
-
+  import SvgIcon from "@/components/svg-icon/index";
   export default {
     name: "button-widget",
     componentName: 'FieldWidget',  //必须固定为FieldWidget，用于接收父级组件的broadcast事件
@@ -49,6 +58,7 @@
     },
     components: {
       StaticContentWrapper,
+      SvgIcon
     },
     computed: {
 

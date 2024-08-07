@@ -130,13 +130,21 @@ export default {
       nameRequired: '组件名称不可为空',
 
       numberValidator: '数字',
+      numberValidatorErr: '包含非数字字符',
       letterValidator: '字母',
+      letterValidatorErr: '包含非字母字符',
       letterAndNumberValidator: '数字字母',
+      letterAndNumberValidatorErr: '只能输入字母或数字',
       mobilePhoneValidator: '手机号码',
+      mobilePhoneValidatorErr: '手机号码格式有误',
       emailValidator: '邮箱',
+      emailValidatorErr: '邮箱格式有误',
       urlValidator: '网址',
+      urlValidatorErr: 'URL格式有误',
       noChineseValidator: '非中文字符',
+      noChineseValidatorErr: '不可输入中文字符',
       chineseValidator: '仅中文字符',
+      chineseValidatorErr: '只能输入中文字符',
 
       rowspanNotConsistentForMergeEntireRow: '存在行高不一致的单元格, 无法合并整行.',
       colspanNotConsistentForMergeEntireColumn: '存在列宽不一致的单元格, 无法合并整列.',
@@ -188,7 +196,8 @@ export default {
       blockLayout: '块',
       buttonStyle: '显示为按钮',
       border: '带有边框',
-      labelWidth: '标签宽度',
+      labelWidth: '标签宽度(px)',
+      labelWidthHelp: '不填写则默认宽度是表单的全局宽度',
       rows: '行数',
       labelHidden: '隐藏字段标签',
       required: '必填字段',
@@ -219,8 +228,11 @@ export default {
       plain: '朴素按钮',
       round: '圆角按钮',
       circle: '圆形按钮',
+      link: '	是否为链接按钮',
       icon: '图标',
       optionsSetting: '选项设置',
+      dataDictionary: '数据字典',
+      selectDictionary: '选择数据字典',
       addOption: '增加选项',
       importOptions: '导入选项',
       resetDefault: '重设选中项',
@@ -326,8 +338,16 @@ export default {
       formRefName: '引用名称',
       formRulesName: '验证规则名称',
       syntaxCheckWarning: 'JS代码存在语法错误，请仔细检查！',
+      validationHintPlaceholder: '请输入提示语'
+    },
 
-    }
+    acquiesce: {
+      inputText: '请输入',
+      selectText: '请选择',
+      startTimeText: '开始时间',
+      endTimeText: '结束时间',
+      required: '该项为必填项!',
+    },
 
   }
 }

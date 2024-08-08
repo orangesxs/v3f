@@ -467,7 +467,9 @@
         this.$prompt(this.i18nt('designer.hint.fileNameForSave'), this.i18nt('designer.hint.saveFileTitle'), {
           inputValue: defaultFileName,
           closeOnClickModal: false,
-          inputPlaceholder: this.i18nt('designer.hint.fileNameInputPlaceholder')
+          inputPlaceholder: this.i18nt('designer.hint.fileNameInputPlaceholder'),
+          confirmButtonText: this.i18nt('designer.hint.confirm'),
+          cancelButtonText: this.i18nt('designer.hint.cancel'),
         }).then(({ value }) => {
           if (!value) {
             value = defaultFileName

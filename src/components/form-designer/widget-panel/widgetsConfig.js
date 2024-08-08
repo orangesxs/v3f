@@ -735,7 +735,7 @@ export const basicFields = [
       plain: false,
       round: false,
       circle: false,
-      icon: null,
+      icon: '',
       //-------------------
       // customClass: "", //自定义css类名
       //-------------------

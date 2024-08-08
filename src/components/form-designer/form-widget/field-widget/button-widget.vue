@@ -8,13 +8,8 @@
                :link="field.options.link"
                :disabled="field.options.disabled"
                @click="handleButtonWidgetClick">
+      <svg-icon v-if="field.options.icon" :icon-class="field.options.icon" />
       {{field.options.label}}
-
-      <!-- :icon="field.options.icon" -->
-      <template #icon>
-        <svg-icon :icon-class="field.options.icon" />
-      </template>
-    
     </el-button>
   </static-content-wrapper>
 </template>

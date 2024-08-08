@@ -34,7 +34,6 @@
     "el-view",
     "el-zoom-in",
     "file-upload-field",
-    "github",
     "grid",
     "html-text",
     "node-tree",
@@ -58,7 +57,6 @@
     "textarea-field",
     "time-field",
     "time-range-field",
-    "undo",
-    "vue-sfc"
+    "undo"
   ]
 }

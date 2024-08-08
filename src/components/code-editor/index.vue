@@ -57,7 +57,8 @@
         tabSize: 2, // 制表符设置为2个空格大小
         readOnly: this.readonly,
         highlightActiveLine: true,
-        value: this.codeValue
+        value: this.codeValue,
+        showPrintMargin: false
       })
 
       this.aceEditor.setOptions({

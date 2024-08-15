@@ -1,6 +1,5 @@
 node_modules
 .DS_Store
-dist
 dist-ssr
 *.local
 /.idea/
@@ -9,3 +8,4 @@ dist-ssr
 *.iml
 /package-lock.json
 /lib/vuedraggable/dist_bak/
+/dist

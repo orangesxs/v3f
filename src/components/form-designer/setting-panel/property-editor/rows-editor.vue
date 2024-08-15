@@ -1,6 +1,6 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.rows')">
-    <el-input-number v-model="optionModel.rows" style="width: 100%"></el-input-number>
+    <el-input-number :min="2" v-model="optionModel.rows" style="width: 100%"></el-input-number>
   </el-form-item>
 </template>
 

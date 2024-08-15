@@ -28,8 +28,8 @@
       <el-container class="center-layout-container">
         <el-header class="toolbar-header">
           <toolbar-panel :designer="designer" :global-dsv="globalDsv" ref="toolbarRef">
-            <template v-for="(idx, slotName) in $slots" #[slotName]>
-              <slot :name="slotName"></slot>
+            <template #toolbar>
+              <slot name="toolbar"></slot>
             </template>
           </toolbar-panel>
         </el-header>

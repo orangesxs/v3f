@@ -25,10 +25,6 @@
           {
             label: '时间日期范围',
             value: 'datetimerange'
-          },
-          {
-            label: '月份范围',
-            value: 'monthrange'
           }
         ]
       }

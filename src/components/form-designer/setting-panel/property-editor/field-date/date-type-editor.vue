@@ -1,12 +1,11 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.displayType')">
     <el-select v-model="optionModel.type">
-      <el-option label="datetime" value="datetime"></el-option>
-      <el-option label="date" value="date"></el-option>
-      <el-option label="dates" value="dates"></el-option>
-      <el-option label="year" value="year"></el-option>
-      <el-option label="month" value="month"></el-option>
-      <el-option label="week" value="week"></el-option>
+      <el-option :label="i18nt('designer.setting.datetime') " value="datetime"></el-option>
+      <el-option :label="i18nt('designer.setting.date') " value="date"></el-option>
+      <el-option :label="i18nt('designer.setting.week') " value="week"></el-option>
+      <el-option :label="i18nt('designer.setting.month') " value="month"></el-option>
+      <el-option :label="i18nt('designer.setting.year') " value="year"></el-option>
     </el-select>
   </el-form-item>
 </template>

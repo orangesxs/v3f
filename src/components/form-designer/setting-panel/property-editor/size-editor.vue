@@ -22,11 +22,9 @@
     data() {
       return {
         widgetSizes: [
-          {label: 'default', value: ''},
-          {label: 'large', value: 'large'},
-          //{label: 'medium', value: 'medium'},
-          {label: 'small', value: 'small'},
-          //{label: 'mini', value: 'mini'},
+          {label: this.i18nt('designer.setting.default'), value: ''},
+          {label: this.i18nt('designer.setting.large'), value: 'large'},
+          {label: this.i18nt('designer.setting.small'), value: 'small'},
         ],
       }
     }

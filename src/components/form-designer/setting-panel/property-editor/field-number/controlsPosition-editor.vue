@@ -1,8 +1,8 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.controlsPosition')">
     <el-select v-model="optionModel.controlsPosition">
-      <el-option label="default" value=""></el-option>
-      <el-option label="right" value="right"></el-option>
+      <el-option :label="i18nt('designer.setting.default')" value=""></el-option>
+      <el-option :label="i18nt('designer.setting.right')" value="right"></el-option>
     </el-select>
   </el-form-item>
 </template>

@@ -730,9 +730,14 @@ export function createDesigner(vueInstance) {
       let tempId = generateId()
       newWidget.id = newWidget.type.replace(/-/g, '') + tempId
 
-      // 添加创建元素时的默认属性值
+      // // // 添加创建元素时的默认属性值
       newWidget.options.name = newWidget.id
-      newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
+      // newWidget.options.label = newWidget.options.label || newWidget.type.toLowerCase()
+      // newWidget.options.name = ''
+      newWidget.options.label = this.vueInstance.i18n2t(
+        `designer.widgetLabel.${newWidget.type}`,
+        `extension.widgetLabel.${newWidget.type}`
+      )
 
       delete newWidget.displayName
       return newWidget

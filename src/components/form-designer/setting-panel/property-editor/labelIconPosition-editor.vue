@@ -22,8 +22,8 @@
     data() {
       return {
         labelIconPosition: [
-          {label: 'front', value: 'front'},
-          {label: 'rear', value: 'rear'},
+          {label: this.i18nt('designer.setting.front'), value: 'front'},
+          {label: this.i18nt('designer.setting.rear'), value: 'rear'},
         ],
 
       }

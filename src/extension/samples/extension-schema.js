@@ -21,7 +21,7 @@ export const alertSchema = {
   formItemFlag: false,
   options: {
     // name: '',
-    title: 'Good things are coming...',
+    title: '美好的事情即将发生...',
     type: 'info',
     description: '',
     closable: true,

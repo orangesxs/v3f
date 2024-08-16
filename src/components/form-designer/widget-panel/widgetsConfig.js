@@ -259,9 +259,9 @@ export const basicFields = [
       // 字典id
       dictionaryId: '',
       optionItems: [
-        { label: "radio 1", value: 1 },
-        { label: "radio 2", value: 2 },
-        { label: "radio 3", value: 3 },
+        { label: translateText('radio') + " 1", value: 1 },
+        { label: translateText('radio') + " 2", value: 2 },
+        { label: translateText('radio') + " 3", value: 3 },
       ],
       required: false,
       requiredHint: translateText('required'),
@@ -303,9 +303,9 @@ export const basicFields = [
       // 字典id
       dictionaryId: '',
       optionItems: [
-        { label: "check 1", value: 1 },
-        { label: "check 2", value: 2 },
-        { label: "check 3", value: 3 },
+        { label: translateText('check') + " 1", value: 1 },
+        { label: translateText('check') + " 2", value: 2 },
+        { label: translateText('check') + " 3", value: 3 },
       ],
       required: false,
       requiredHint: translateText('required'),
@@ -342,9 +342,9 @@ export const basicFields = [
       // hidden: false,
       clearable: true,
       filterable: false,
-      allowCreate: false,
-      remote: false,
-      automaticDropdown: false, //自动下拉
+      // allowCreate: false,
+      // remote: false,
+      // automaticDropdown: false, //自动下拉
       multiple: false,
       multipleLimit: 0,
       // 类型 1 选项 2 数据字典
@@ -352,9 +352,9 @@ export const basicFields = [
       // 字典id
       dictionaryId: '',
       optionItems: [
-        { label: "select 1", value: 1 },
-        { label: "select 2", value: 2 },
-        { label: "select 3", value: 3 },
+        { label: translateText('select') + " 1", value: 1 },
+        { label: translateText('select') + " 2", value: 2 },
+        { label: translateText('select') + " 3", value: 3 },
       ],
       required: false,
       requiredHint: translateText('required'),

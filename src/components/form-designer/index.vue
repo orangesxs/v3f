@@ -135,7 +135,7 @@
 
             presetCssCode: '',  //设计器预设CSS样式代码
 
-            resetFormJson: false,  //是否在设计器初始化时将表单内容重置为空 如设置为true，则刷新页面时也会清空设计器画布区域，慎用！
+            resetFormJson: true,  //是否在设计器初始化时将表单内容重置为空 如设置为true，则刷新页面时也会清空设计器画布区域，慎用！
           }
         }
       },

@@ -32,6 +32,12 @@ export function createDesigner(vueInstance) {
       maxStep: 20,
       steps: [],
     },
+    /** 获取字段对象  */
+    getFieldItem(fieldName) {
+      if(this.vueInstance.fieldList && this.vueInstance.fieldList.length > 0) {
+        return this.vueInstance.fieldList.find(item => item.displayName === fieldName)
+      }
+    },
 
     initDesigner(resetFormJson) {
       this.widgetList = []

@@ -152,8 +152,10 @@
     watch: {
       'designer.selectedWidget': {
         handler(val) {
-          if (!!val) {
+          if (!!val && val.type) {
             this.activeTab = "1"
+          } else {
+            this.activeTab = "2"
           }
         }
       },

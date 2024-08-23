@@ -25,7 +25,7 @@
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="i18nt('designer.setting.labelWidth')">
-            <el-input-number v-model="formConfig.labelWidth" :min="0" style="width: 100%"></el-input-number>
+            <el-input-number v-model="formConfig.labelWidth" :min="0" :controls-position="designer.controlsPosition" style="width: 100%"></el-input-number>
           </el-form-item>
           <!-- 全局css -->
           <el-form-item v-if="hidden" :label="i18nt('designer.setting.formCss')">

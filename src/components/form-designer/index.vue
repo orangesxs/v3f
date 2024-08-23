@@ -34,10 +34,8 @@
           </toolbar-panel>
         </el-header>
         <el-main class="form-widget-main">
-          <!-- <el-scrollbar class="container-scroll-bar" :style="{height: scrollerHeight}"> -->
-            <v-form-widget :designer="designer" :form-config="designer.formConfig" :global-dsv="globalDsv" ref="formRef">
-            </v-form-widget>
-          <!-- </el-scrollbar> -->
+          <v-form-widget :designer="designer" :form-config="designer.formConfig" :global-dsv="globalDsv" ref="formRef">
+          </v-form-widget>
         </el-main>
       </el-container>
 
@@ -84,7 +82,7 @@
         type: String,
         default: 'zh-CN'
       },
-      /* 后端字段列表 [ { label: '', name: '' } ] */
+      /* 后端字段列表 */
       fieldList: {
         type: Array,
         default: () => []
@@ -95,7 +93,7 @@
         type: Array,
         default: () => [
           // 默认禁止显示组件
-          'table', 'static-text', 'html-text', 'card',
+          'table', 'static-text', 'html-text', 'card', 'rich-editor',
           // ----------- 上传相关组件
           'file-upload', 'picture-upload'
         ]

@@ -32,10 +32,17 @@ export default {
         optionsDict: DATA.optionsDict
       },
       dictionary: DATA.optionsDict,
-      fieldList: DATA.fieldList,
+      fieldList: [],
       formTemplates: DATA.formTemplates,
       locale: 'zh-CN'
     };
+  },
+  created() {
+    //
+    setTimeout(() => {
+      console.log('888888888888888888888888',)
+      this.fieldList = DATA.fieldList
+    }, 5000);
   },
   computed: {
     //

@@ -1,7 +1,7 @@
 <template>
   <el-form-item :label="i18nt('designer.setting.maxLength')">
     <el-input-number type="number" @input="inputNumberHandler" class="hide-spin-button"
-              :min="1" v-model="maxLength" style="width: 100%" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input-number>
+              :min="1" :max="max" v-model="maxLength" style="width: 100%" :placeholder="i18nt('designer.acquiesce.inputText')"></el-input-number>
   </el-form-item>
 </template>
 
@@ -17,6 +17,11 @@
       selectedWidget: Object,
       optionModel: Object,
     },
+    data() {
+      return {
+        max: Infinity
+      }
+    },
     computed: {
       maxLength: {
         get() {
@@ -31,6 +36,21 @@
           }
         }
       },
+    },
+    watch: {
+       'optionModel.name': {
+        handler(newVal) {
+          const item = this.designer.getFieldItem(newVal)
+          if(item) {
+            if(item.scale) {
+              this.maxLength = item.scale
+              this.max = item.scale
+            }
+          }
+        },
+        deep: true,
+        immediate: true
+      }
     }
   }
 </script>

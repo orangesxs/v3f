@@ -377,6 +377,59 @@ export const basicFields = [
   },
 
   {
+    type: "cascader",
+    icon: "cascader-field",
+    formItemFlag: true,
+    options: {
+      name: "",
+      label: "",
+      labelAlign: "",
+      defaultValue: "",
+      placeholder: translateText('selectText'),
+      size: "",
+      labelWidth: null,
+      labelHidden: false,
+      columnWidth: "200px",
+      disabled: false,
+      // hidden: false,
+      clearable: true,
+      filterable: false,
+      multiple: false,
+      checkStrictly: false, //可选择任意一级选项，默认不开启
+      showAllLevels: true, //显示完整路径
+      // 类型 1 选项 2 数据字典
+      oType: '1',
+      // 字典id
+      dictionaryId: '',
+      optionItems: [
+        {
+          label: "select 1",
+          value: 1,
+          children: [{ label: "child 1", value: 11 }],
+        },
+        { label: "select 2", value: 2 },
+        { label: "select 3", value: 3 },
+      ],
+      required: false,
+      requiredHint: translateText('required'),
+      customRule: "",
+      customRuleHint: "",
+      //-------------------
+      // customClass: "", //自定义css类名
+      labelIconClass: null,
+      labelIconPosition: "rear",
+      labelTooltip: null,
+      //-------------------
+      onCreated: "",
+      onMounted: "",
+      onChange: "",
+      onFocus: "",
+      onBlur: "",
+      onValidate: "",
+    },
+  },
+
+  {
     type: "time",
     icon: "time-field",
     formItemFlag: true,
@@ -768,180 +821,127 @@ export const basicFields = [
 ];
 
 export const advancedFields = [
-  {
-    type: "picture-upload",
-    icon: "picture-upload-field",
-    formItemFlag: true,
-    options: {
-      name: "",
-      label: "",
-      labelAlign: "",
-      labelWidth: null,
-      labelHidden: false,
-      columnWidth: "200px",
-      disabled: false,
-      // hidden: false,
-      required: false,
-      requiredHint: translateText('required'),
-      customRule: "",
-      customRuleHint: "",
-      //-------------------
-      uploadURL: "",
-      uploadTip: "",
-      withCredentials: false,
-      multipleSelect: false,
-      showFileList: true,
-      limit: 3,
-      fileMaxSize: 5, //MB
-      fileTypes: ["jpg", "jpeg", "png"],
-      //headers: [],
-      //-------------------
-      // customClass: "", //自定义css类名
-      labelIconClass: null,
-      labelIconPosition: "rear",
-      labelTooltip: null,
-      //-------------------
-      onCreated: "",
-      onMounted: "",
-      onBeforeUpload: "",
-      onUploadSuccess: "",
-      onUploadError: "",
-      onFileRemove: "",
-      onValidate: "",
-      //onFileChange: '',
-    },
-  },
+  // {
+  //   type: "picture-upload",
+  //   icon: "picture-upload-field",
+  //   formItemFlag: true,
+  //   options: {
+  //     name: "",
+  //     label: "",
+  //     labelAlign: "",
+  //     labelWidth: null,
+  //     labelHidden: false,
+  //     columnWidth: "200px",
+  //     disabled: false,
+  //     // hidden: false,
+  //     required: false,
+  //     requiredHint: translateText('required'),
+  //     customRule: "",
+  //     customRuleHint: "",
+  //     //-------------------
+  //     uploadURL: "",
+  //     uploadTip: "",
+  //     withCredentials: false,
+  //     multipleSelect: false,
+  //     showFileList: true,
+  //     limit: 3,
+  //     fileMaxSize: 5, //MB
+  //     fileTypes: ["jpg", "jpeg", "png"],
+  //     //headers: [],
+  //     //-------------------
+  //     // customClass: "", //自定义css类名
+  //     labelIconClass: null,
+  //     labelIconPosition: "rear",
+  //     labelTooltip: null,
+  //     //-------------------
+  //     onCreated: "",
+  //     onMounted: "",
+  //     onBeforeUpload: "",
+  //     onUploadSuccess: "",
+  //     onUploadError: "",
+  //     onFileRemove: "",
+  //     onValidate: "",
+  //     //onFileChange: '',
+  //   },
+  // },
 
-  {
-    type: "file-upload",
-    icon: "file-upload-field",
-    formItemFlag: true,
-    options: {
-      name: "",
-      label: "",
-      labelAlign: "",
-      labelWidth: null,
-      labelHidden: false,
-      columnWidth: "200px",
-      disabled: false,
-      // hidden: false,
-      required: false,
-      requiredHint: translateText('required'),
-      customRule: "",
-      customRuleHint: "",
-      //-------------------
-      uploadURL: "",
-      uploadTip: "",
-      withCredentials: false,
-      multipleSelect: false,
-      showFileList: true,
-      limit: 3,
-      fileMaxSize: 5, //MB
-      fileTypes: ["doc", "docx", "xls", "xlsx"],
-      //headers: [],
-      //-------------------
-      // customClass: "", //自定义css类名
-      labelIconClass: null,
-      labelIconPosition: "rear",
-      labelTooltip: null,
-      //-------------------
-      onCreated: "",
-      onMounted: "",
-      onBeforeUpload: "",
-      onUploadSuccess: "",
-      onUploadError: "",
-      onFileRemove: "",
-      onValidate: "",
-      //onFileChange: '',
-    },
-  },
+  // {
+  //   type: "file-upload",
+  //   icon: "file-upload-field",
+  //   formItemFlag: true,
+  //   options: {
+  //     name: "",
+  //     label: "",
+  //     labelAlign: "",
+  //     labelWidth: null,
+  //     labelHidden: false,
+  //     columnWidth: "200px",
+  //     disabled: false,
+  //     // hidden: false,
+  //     required: false,
+  //     requiredHint: translateText('required'),
+  //     customRule: "",
+  //     customRuleHint: "",
+  //     //-------------------
+  //     uploadURL: "",
+  //     uploadTip: "",
+  //     withCredentials: false,
+  //     multipleSelect: false,
+  //     showFileList: true,
+  //     limit: 3,
+  //     fileMaxSize: 5, //MB
+  //     fileTypes: ["doc", "docx", "xls", "xlsx"],
+  //     //headers: [],
+  //     //-------------------
+  //     // customClass: "", //自定义css类名
+  //     labelIconClass: null,
+  //     labelIconPosition: "rear",
+  //     labelTooltip: null,
+  //     //-------------------
+  //     onCreated: "",
+  //     onMounted: "",
+  //     onBeforeUpload: "",
+  //     onUploadSuccess: "",
+  //     onUploadError: "",
+  //     onFileRemove: "",
+  //     onValidate: "",
+  //     //onFileChange: '',
+  //   },
+  // },
 
-  {
-    type: "rich-editor",
-    icon: "rich-editor-field",
-    formItemFlag: true,
-    options: {
-      name: "",
-      label: "",
-      labelAlign: "",
-      placeholder: translateText('inputText'),
-      labelWidth: null,
-      labelHidden: false,
-      columnWidth: "200px",
-      contentHeight: "200px",
-      disabled: false,
-      // hidden: false,
-      required: false,
-      requiredHint: translateText('required'),
-      customRule: "",
-      customRuleHint: "",
-      //-------------------
-      // customClass: "", //自定义css类名
-      labelIconClass: null,
-      labelIconPosition: "rear",
-      labelTooltip: null,
-      minLength: null,
-      maxLength: null,
-      showWordLimit: false,
-      //-------------------
-      onCreated: "",
-      onMounted: "",
-      onValidate: "",
-    },
-  },
-
-  {
-    type: "cascader",
-    icon: "cascader-field",
-    formItemFlag: true,
-    options: {
-      name: "",
-      label: "",
-      labelAlign: "",
-      defaultValue: "",
-      placeholder: translateText('selectText'),
-      size: "",
-      labelWidth: null,
-      labelHidden: false,
-      columnWidth: "200px",
-      disabled: false,
-      // hidden: false,
-      clearable: true,
-      filterable: false,
-      multiple: false,
-      checkStrictly: false, //可选择任意一级选项，默认不开启
-      showAllLevels: true, //显示完整路径
-      // 类型 1 选项 2 数据字典
-      oType: '1',
-      // 字典id
-      dictionaryId: '',
-      optionItems: [
-        {
-          label: "select 1",
-          value: 1,
-          children: [{ label: "child 1", value: 11 }],
-        },
-        { label: "select 2", value: 2 },
-        { label: "select 3", value: 3 },
-      ],
-      required: false,
-      requiredHint: translateText('required'),
-      customRule: "",
-      customRuleHint: "",
-      //-------------------
-      // customClass: "", //自定义css类名
-      labelIconClass: null,
-      labelIconPosition: "rear",
-      labelTooltip: null,
-      //-------------------
-      onCreated: "",
-      onMounted: "",
-      onChange: "",
-      onFocus: "",
-      onBlur: "",
-      onValidate: "",
-    },
-  },
+  // {
+  //   type: "rich-editor",
+  //   icon: "rich-editor-field",
+  //   formItemFlag: true,
+  //   options: {
+  //     name: "",
+  //     label: "",
+  //     labelAlign: "",
+  //     placeholder: translateText('inputText'),
+  //     labelWidth: null,
+  //     labelHidden: false,
+  //     columnWidth: "200px",
+  //     contentHeight: "200px",
+  //     disabled: false,
+  //     // hidden: false,
+  //     required: false,
+  //     requiredHint: translateText('required'),
+  //     customRule: "",
+  //     customRuleHint: "",
+  //     //-------------------
+  //     // customClass: "", //自定义css类名
+  //     labelIconClass: null,
+  //     labelIconPosition: "rear",
+  //     labelTooltip: null,
+  //     minLength: null,
+  //     maxLength: null,
+  //     showWordLimit: false,
+  //     //-------------------
+  //     onCreated: "",
+  //     onMounted: "",
+  //     onValidate: "",
+  //   },
+  // },
 ];
 
 export const customFields = [];

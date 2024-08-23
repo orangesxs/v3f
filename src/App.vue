@@ -33,7 +33,8 @@ export default {
       },
       dictionary: DATA.optionsDict,
       fieldList: [],
-      formTemplates: DATA.formTemplates,
+      // DATA.formTemplates
+      formTemplates: [],
       locale: 'zh-CN'
     };
   },

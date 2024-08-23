@@ -163,7 +163,7 @@
         </el-tab-pane>
 
         <el-tab-pane
-          v-if="showFormTemplates()"
+          v-if="showFormTemplates()&&formTemplates&&formTemplates.length>0"
           name="formLib"
           style="padding: 8px"
         >

@@ -345,7 +345,26 @@
 
         return formJson
       },
-
+      /** 校验字段 */
+      validateField() {
+        const fieldList = this.getFieldWidgets()
+        let errNameItem = null
+        fieldList.forEach(f => {
+          if (errNameItem) return
+          if (!this.designer.fieldInList(f.name)) {
+            errNameItem = f
+            this.designer.setSelected(f.field)
+            // const label = f.field.options.label
+            this.$message.error(`${this.i18nt('designer.setting.fieldNameError')}`)
+          }
+        })
+        return !Boolean(errNameItem)
+      },
+      /** 校验字段 数量 */
+      validateFieldNum() {
+        const fieldList = this.getFieldWidgets()
+        return fieldList.length === this.fieldList.length
+      },
       getWidgetRef(widgetName, showError = false) {
         return this.$refs['formRef'].getWidgetRef(widgetName, showError)
       },

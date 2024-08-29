@@ -776,7 +776,7 @@ export const basicFields = [
     icon: "button",
     formItemFlag: false,
     options: {
-      name: "",
+      // name: "",
       label: "",
       columnWidth: "200px",
       size: "",
@@ -803,7 +803,7 @@ export const basicFields = [
     icon: "divider",
     formItemFlag: false,
     options: {
-      name: "",
+      // name: "",
       label: "",
       columnWidth: "200px",
       direction: "horizontal",

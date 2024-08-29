@@ -1,6 +1,6 @@
 <template>
   <!-- 容器组件不显示 name 属性 -->
-  <el-form-item prop="name" :rules="nameRequiredRule" v-if="!selectedWidget.category">
+  <el-form-item :show-message="false" prop="name" :rules="nameRequiredRule" v-if="!selectedWidget.category">
     <template #label>
       <span>{{i18nt('designer.setting.uniqueName')}}
         <el-tooltip effect="light" :content="i18nt('designer.setting.editNameHelp')">
@@ -39,7 +39,15 @@
     inject: ['getDesignerConfig', 'getFieldList'],
     data() {
       return {
-        nameRequiredRule: [{required: true }],
+        nameRequiredRule: [
+          {required: true },
+          { validator: (rule, value, callback) => {
+            if (value&&!this.designer?.fieldInList(value)) {
+              callback('')
+            } 
+            callback()
+          }, trigger: 'change' }
+        ],
         // // serverFieldList: this.designer.fieldList
         // serverFieldList: []
       }

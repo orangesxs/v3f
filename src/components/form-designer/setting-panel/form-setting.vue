@@ -4,13 +4,6 @@
              class="setting-form" @submit.prevent>
       <el-collapse v-model="formActiveCollapseNames" class="setting-collapse">
         <el-collapse-item name="1" :title="i18nt('designer.setting.basicSetting')">
-          <el-form-item :label="i18nt('designer.setting.formSize')">
-            <el-select v-model="formConfig.size">
-              <el-option v-for="item in formSizes" :key="item.value" :label="item.label"
-                         :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
           <el-form-item :label="i18nt('designer.setting.labelPosition')">
             <el-radio-group v-model="formConfig.labelPosition" class="radio-group-custom">
               <el-radio-button label="left">{{i18nt('designer.setting.leftPosition')}}</el-radio-button>
@@ -23,6 +16,13 @@
               <el-radio-button label="label-center-align">{{i18nt('designer.setting.centerAlign')}}</el-radio-button>
               <el-radio-button label="label-right-align">{{i18nt('designer.setting.rightAlign')}}</el-radio-button>
             </el-radio-group>
+          </el-form-item>
+          <el-form-item :label="i18nt('designer.setting.formSize')">
+            <el-select v-model="formConfig.size">
+              <el-option v-for="item in formSizes" :key="item.value" :label="item.label"
+                         :value="item.value">
+              </el-option>
+            </el-select>
           </el-form-item>
           <el-form-item :label="i18nt('designer.setting.labelWidth')">
             <el-input-number v-model="formConfig.labelWidth" :min="0" :controls-position="designer.controlsPosition" style="width: 100%"></el-input-number>

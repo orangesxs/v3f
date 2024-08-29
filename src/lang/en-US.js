@@ -266,6 +266,7 @@ export default {
       fileTypesHelp: 'Allows to add more file types',
       headers: 'Request Headers',
 
+      fieldNameError: 'Please re-select the field name',
       cellWidth: 'Width',
       cellHeight: 'Height',
       wordBreak: 'Line Wrap',

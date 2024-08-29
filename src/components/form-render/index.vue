@@ -34,6 +34,24 @@
       </template>
     </template>
   </el-form>
+  <div v-if="showFormDataDialogFlag" class="" v-drag="['.nested-drag-dialog.el-dialog', '.nested-drag-dialog .el-dialog__header']">
+      <el-dialog :title="i18nt('designer.hint.exportFormData')" v-model="showFormDataDialogFlag"
+                 :show-close="true" class="nested-drag-dialog dialog-title-light-bg" center
+                 :close-on-click-modal="false" :close-on-press-escape="false" :destroy-on-close="true"
+                 :append-to-body="true">
+        <div style="border: 1px solid #DCDFE6">
+          <code-editor :mode="'json'" :readonly="true" v-model="formDataJson"></code-editor>
+        </div>
+        <template #footer>
+          <div class="dialog-footer">
+            <el-button type="primary" class="copy-form-data-json-btn" :data-clipboard-text="formDataRawJson" @click="copyFormDataJson">
+              {{i18nt('designer.hint.copyFormData')}}</el-button>
+            <el-button @click="showFormDataDialogFlag = false">
+              {{i18nt('designer.hint.closePreview')}}</el-button>
+          </div>
+        </template>
+      </el-dialog>
+    </div>
 </template>
 
 <script>
@@ -43,9 +61,10 @@
   import FieldComponents from '@/components/form-designer/form-widget/field-widget/index'
   import {
     generateId, deepClone, insertCustomCssToHead, insertGlobalFunctionsToHtml, getAllContainerWidgets,
-    getAllFieldWidgets, traverseFieldWidgets, buildDefaultFormJson
+    getAllFieldWidgets, traverseFieldWidgets, buildDefaultFormJson,copyToClipboard
   } from "@/utils/util"
   import i18n, { changeLocale } from "@/utils/i18n"
+   import CodeEditor from '@/components/code-editor/index'
 
   export default {
     name: "VFormRender",
@@ -53,7 +72,7 @@
     mixins: [emitter, i18n],
     components: {
       //ElForm,
-
+      CodeEditor,
       ...FieldComponents,
     },
     props: {
@@ -123,6 +142,11 @@
         formId: null,  //表单唯一Id，用于区分页面上的多个v-form-render组件！！
 
         externalComponents:  {},  //外部组件实例集合
+
+        // ----------------------
+        formDataJson: '',
+        formDataRawJson: '',
+        showFormDataDialogFlag: false,
       }
     },
     computed: {
@@ -497,6 +521,24 @@
         })
 
         return promise
+      },
+      /** 获取表单数据详情 */
+      getFormDataDialog() {
+        this.getFormData().then(formData => {
+          this.formDataJson = JSON.stringify(formData, null, '  ')
+          this.formDataRawJson = JSON.stringify(formData)
+
+          this.showFormDataDialogFlag = true
+        }).catch(error => {
+          this.$message.error(error)
+        })
+      },
+      copyFormDataJson(e) {
+        copyToClipboard(this.formDataRawJson, e,
+            this.$message,
+            this.i18nt('designer.hint.copyJsonSuccess'),
+            this.i18nt('designer.hint.copyJsonFail')
+        )
       },
 
       setFormData(formData) { //设置表单数据

@@ -38,7 +38,22 @@ export function createDesigner(vueInstance) {
         return this.vueInstance.fieldList.find(item => item.displayName === fieldName)
       }
     },
-
+    /**
+     * 判断名称是否在 fieldList 中
+     * @param {string} fieldName 
+     * @returns 存在则返回 true 默认 true
+     */
+    fieldInList(fieldName) {
+      if(this.vueInstance.fieldList && this.vueInstance.fieldList.length > 0) {
+        const f = this.vueInstance.fieldList.findIndex(item => item.displayName === fieldName)
+        if(f === -1) {
+          return false
+        } 
+        return true
+      } else {
+        return true
+      }
+    },
     initDesigner(resetFormJson) {
       this.widgetList = []
       this.formConfig = deepClone(defaultFormConfig)

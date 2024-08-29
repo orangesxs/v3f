@@ -4,7 +4,7 @@
       <el-tab-pane :label="i18nt('designer.hint.widgetSetting')" name="1">
         <el-scrollbar class="setting-scrollbar" :style="{height: scrollerHeight}">
           <template v-if="!!designer.selectedWidget && !designer.selectedWidget.category">
-            <el-form :model="optionModel" size="small" label-position="left" label-width="120px" class="setting-form" @submit.prevent>
+            <el-form ref="optionModelRef" :model="optionModel" size="small" label-position="left" label-width="120px" class="setting-form" @submit.prevent>
               <el-collapse v-model="widgetActiveCollapseNames" class="setting-collapse">
                 <el-collapse-item name="1" v-if="showCollapse(commonProps)" :title="i18nt('designer.setting.commonSetting')">
                   <template v-for="(editorName, propName) in commonProps">
@@ -29,7 +29,7 @@
           </template>
 
           <template v-if="(!!designer.selectedWidget && !!designer.selectedWidget.category)">
-            <el-form :model="optionModel" size="small" label-position="left" label-width="120px" class="setting-form" @submit.prevent>
+            <el-form ref="optionModelRef" :model="optionModel" size="small" label-position="left" label-width="120px" class="setting-form" @submit.prevent>
               <el-collapse v-model="widgetActiveCollapseNames" class="setting-collapse">
                 <el-collapse-item name="1" v-if="showCollapse(commonProps)" :title="i18nt('designer.setting.commonSetting')">
                   <template v-for="(editorName, propName) in commonProps">
@@ -166,6 +166,15 @@
           this.designer.saveCurrentHistoryStep()
         }
       },
+      'selectedWidget.options.name': {  //组件属性name变动后
+        deep: true,
+        handler() {
+          setTimeout(() => {
+            if(!this.selectedWidget.options) return 
+            this.fnfnfnffnfnf()
+          }, 0);
+        }
+      },
 
       formConfig: {
         deep: true,
@@ -201,6 +210,13 @@
       // })
     },
     methods: {
+      async fnfnfnffnfnf () {
+        try {
+          await this.$refs.optionModelRef?.validateField('name')
+        } catch (error) {
+          
+        }
+      },
       showEventCollapse() {
         if (this.designerConfig['eventCollapse'] === undefined) {
           return true

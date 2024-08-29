@@ -338,6 +338,7 @@ export default {
       deleteEntireCol: '删除整列',
       deleteEntireRow: '删除整行',
 
+      fieldNameError: '请重新选择字段名称',
       widgetName: '组件唯一名称',
       formSize: '全局组件大小',
       labelPosition: '标签位置',

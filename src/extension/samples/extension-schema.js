@@ -24,7 +24,7 @@ export const alertSchema = {
     title: '美好的事情即将发生...',
     type: 'info',
     description: '',
-    closable: true,
+    closable: false,
     closeText: '',
     center: true,
     showIcon: false,
